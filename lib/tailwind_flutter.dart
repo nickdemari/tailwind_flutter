@@ -16,10 +16,8 @@ export 'src/tokens/spacing.dart';
 export 'src/tokens/typography.dart';
 
 // ----- Widget Extensions (Tier 2) -----
-// export 'src/extensions/widget_extensions.dart';
-// export 'src/extensions/context_extensions.dart';
-// export 'src/extensions/text_extensions.dart';
-// export 'src/extensions/edge_insets_extensions.dart';
+export 'src/extensions/text_extensions.dart';
+export 'src/extensions/widget_extensions.dart';
 
 // ----- Style Composition (Tier 3) -----
 // export 'src/styles/tw_style.dart';
