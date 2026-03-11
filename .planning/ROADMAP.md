@@ -13,7 +13,7 @@ Deliver a pub.dev-published Flutter package that brings Tailwind CSS's design to
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Infrastructure Foundation** - Package scaffolding, CI/CD pipeline, linting, barrel exports, and analysis — everything needed before writing a single token (completed 2026-03-11)
-- [ ] **Phase 2: Token System + Theme Integration** - All 7 token categories as const Dart values with extension types, plus ThemeExtension classes, TwTheme widget, and context.tw resolver
+- [x] **Phase 2: Token System + Theme Integration** - All 7 token categories as const Dart values with extension types, plus ThemeExtension classes, TwTheme widget, and context.tw resolver (completed 2026-03-11)
 - [ ] **Phase 3: Widget Extensions** - Padding, margin, background, radius, opacity, shadow, sizing, alignment, clip, and text-specific chaining extensions on Widget/Text
 - [ ] **Phase 4: Style Composition** - TwStyle immutable class with merge, resolve, and apply — the composable styling tier that ties everything together
 - [ ] **Phase 5: Polish + Publication** - Example app, golden tests, README, CHANGELOG, dartdoc coverage audit, and pana score verification for 160/160 pub.dev points
@@ -46,13 +46,13 @@ Plans:
   3. Typography, radius, shadow, opacity, and breakpoint tokens are all accessible as const values with correct types
   4. Wrapping a widget tree in TwTheme provides token access via context.tw with light and dark presets
   5. All token values and theme resolution have unit test coverage >= 85%
-**Plans:** 3/4 plans executed
+**Plans:** 4/4 plans complete
 
 Plans:
 - [x] 02-01-PLAN.md — Colors (242 + semantics) and spacing (35 values + EdgeInsets getters)
-- [ ] 02-02-PLAN.md — Typography (font sizes, weights, letter spacing, line heights), radius, and shadows
-- [ ] 02-03-PLAN.md — Opacity scale and breakpoint constants
-- [ ] 02-04-PLAN.md — 7 ThemeExtension classes, TwThemeData resolver, TwTheme widget, presets, barrel export
+- [x] 02-02-PLAN.md — Typography (font sizes, weights, letter spacing, line heights), radius, and shadows
+- [x] 02-03-PLAN.md — Opacity scale and breakpoint constants
+- [x] 02-04-PLAN.md — 7 ThemeExtension classes, TwThemeData resolver, TwTheme widget, presets, barrel export
 
 ### Phase 3: Widget Extensions
 **Goal**: Developers can chain Tailwind-style utility methods on any Widget (and Text-specific methods on Text) to apply styling without manually nesting Padding/Container/DecoratedBox widgets
@@ -107,7 +107,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 2/2 | Complete    | 2026-03-11 |
-| 2. Token System + Theme Integration | 3/4 | In Progress|  |
+| 2. Token System + Theme Integration | 4/4 | Complete | 2026-03-11 |
 | 3. Widget Extensions | 0/2 | Not started | - |
 | 4. Style Composition | 0/1 | Not started | - |
 | 5. Polish + Publication | 0/2 | Not started | - |
