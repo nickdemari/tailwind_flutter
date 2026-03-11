@@ -11,8 +11,8 @@ export 'src/tailwind_flutter_version.dart';
 // export 'src/tokens/typography.dart';
 // export 'src/tokens/radius.dart';
 // export 'src/tokens/shadows.dart';
-// export 'src/tokens/breakpoints.dart';
-// export 'src/tokens/opacity.dart';
+export 'src/tokens/breakpoints.dart';
+export 'src/tokens/opacity.dart';
 
 // ----- Theme (Tier 1 integration) -----
 // export 'src/theme/tw_theme.dart';
