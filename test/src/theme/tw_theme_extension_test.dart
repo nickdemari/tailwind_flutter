@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tailwind_flutter/src/theme/tw_theme_extension.dart';
@@ -17,7 +15,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('TwColorTheme', () {
     test('defaults has all 22 families matching TwColors', () {
-      final theme = TwColorTheme.defaults;
+      const theme = TwColorTheme.defaults;
 
       expect(theme.slate, equals(TwColors.slate));
       expect(theme.gray, equals(TwColors.gray));
@@ -75,7 +73,7 @@ void main() {
     });
 
     test('lerp at t=0 returns this', () {
-      final a = TwColorTheme.defaults;
+      const a = TwColorTheme.defaults;
       const customBlue = TwColorFamily(
         shade50: Color(0xFF000000),
         shade100: Color(0xFF000000),
@@ -96,7 +94,7 @@ void main() {
     });
 
     test('lerp at t=1 returns other', () {
-      final a = TwColorTheme.defaults;
+      const a = TwColorTheme.defaults;
       const customBlue = TwColorFamily(
         shade50: Color(0xFF000000),
         shade100: Color(0xFF000000),
@@ -117,11 +115,7 @@ void main() {
     });
 
     test('lerp guard returns this when other is wrong type', () {
-      final a = TwColorTheme.defaults;
-      // When other is not a TwColorTheme, lerp should return this.
-      // ThemeExtension.lerp signature requires covariant ThemeExtension<T>,
-      // so we simulate by calling lerp with the same values at t=0.5
-      // The type guard is tested implicitly through the implementation.
+      const a = TwColorTheme.defaults;
       final result = a.lerp(a, 0.5);
       expect(result, isA<TwColorTheme>());
     });
@@ -132,7 +126,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('TwSpacingTheme', () {
     test('defaults has all 35 values matching TwSpacing', () {
-      final theme = TwSpacingTheme.defaults;
+      const theme = TwSpacingTheme.defaults;
 
       expect(theme.s0, equals(TwSpacing.s0));
       expect(theme.sPx, equals(TwSpacing.sPx));
@@ -156,7 +150,7 @@ void main() {
 
     test('lerp interpolates spacing values', () {
       const big = TwSpace(100);
-      final a = TwSpacingTheme.defaults;
+      const a = TwSpacingTheme.defaults;
       final b = TwSpacingTheme.defaults.copyWith(s4: big);
 
       final result = a.lerp(b, 0.5);
@@ -170,7 +164,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('TwTypographyTheme', () {
     test('defaults has font sizes matching TwFontSizes', () {
-      final theme = TwTypographyTheme.defaults;
+      const theme = TwTypographyTheme.defaults;
 
       expect(theme.xs, equals(TwFontSizes.xs));
       expect(theme.sm, equals(TwFontSizes.sm));
@@ -188,7 +182,7 @@ void main() {
     });
 
     test('defaults has font weights matching TwFontWeights', () {
-      final theme = TwTypographyTheme.defaults;
+      const theme = TwTypographyTheme.defaults;
 
       expect(theme.thin, equals(TwFontWeights.thin));
       expect(theme.extralight, equals(TwFontWeights.extralight));
@@ -202,7 +196,7 @@ void main() {
     });
 
     test('defaults has letter spacing matching TwLetterSpacing', () {
-      final theme = TwTypographyTheme.defaults;
+      const theme = TwTypographyTheme.defaults;
 
       expect(theme.tighter, equals(TwLetterSpacing.tighter));
       expect(theme.tight, equals(TwLetterSpacing.tight));
@@ -213,7 +207,7 @@ void main() {
     });
 
     test('defaults has line heights matching TwLineHeights', () {
-      final theme = TwTypographyTheme.defaults;
+      const theme = TwTypographyTheme.defaults;
 
       expect(theme.leadingNone, equals(TwLineHeights.none));
       expect(theme.leadingTight, equals(TwLineHeights.tight));
@@ -237,7 +231,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('TwRadiusTheme', () {
     test('defaults has all 10 radius values', () {
-      final theme = TwRadiusTheme.defaults;
+      const theme = TwRadiusTheme.defaults;
 
       expect(theme.none, equals(TwRadii.none));
       expect(theme.xs, equals(TwRadii.xs));
@@ -261,7 +255,7 @@ void main() {
 
     test('lerp interpolates radius values', () {
       const big = TwRadius(100);
-      final a = TwRadiusTheme.defaults;
+      const a = TwRadiusTheme.defaults;
       final b = TwRadiusTheme.defaults.copyWith(lg: big);
 
       final result = a.lerp(b, 0.5);
@@ -275,7 +269,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('TwShadowTheme', () {
     test('defaults has all 9 shadow presets', () {
-      final theme = TwShadowTheme.defaults;
+      const theme = TwShadowTheme.defaults;
 
       expect(theme.xxs, equals(TwShadows.xxs));
       expect(theme.xs, equals(TwShadows.xs));
@@ -306,7 +300,7 @@ void main() {
           color: Color(0xFFFF0000),
         ),
       ];
-      final a = TwShadowTheme.defaults;
+      const a = TwShadowTheme.defaults;
       final b = TwShadowTheme.defaults.copyWith(xxs: custom);
 
       final result = a.lerp(b, 0.5);
@@ -321,7 +315,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('TwOpacityTheme', () {
     test('defaults has all 21 opacity values', () {
-      final theme = TwOpacityTheme.defaults;
+      const theme = TwOpacityTheme.defaults;
 
       expect(theme.o0, equals(TwOpacity.o0));
       expect(theme.o5, equals(TwOpacity.o5));
@@ -340,8 +334,8 @@ void main() {
     });
 
     test('lerp interpolates opacity values', () {
-      final a = TwOpacityTheme.defaults;
-      final b = TwOpacityTheme.defaults.copyWith(o50: 1.0);
+      const a = TwOpacityTheme.defaults;
+      final b = TwOpacityTheme.defaults.copyWith(o50: 1);
 
       final result = a.lerp(b, 0.5);
       // lerpDouble(0.5, 1.0, 0.5) = 0.75
@@ -354,7 +348,7 @@ void main() {
   // ---------------------------------------------------------------------------
   group('TwBreakpointTheme', () {
     test('defaults has all 5 breakpoints', () {
-      final theme = TwBreakpointTheme.defaults;
+      const theme = TwBreakpointTheme.defaults;
 
       expect(theme.sm, equals(TwBreakpoints.sm));
       expect(theme.md, equals(TwBreakpoints.md));
@@ -371,7 +365,7 @@ void main() {
     });
 
     test('lerp interpolates breakpoint values', () {
-      final a = TwBreakpointTheme.defaults;
+      const a = TwBreakpointTheme.defaults;
       final b = TwBreakpointTheme.defaults.copyWith(sm: 1000);
 
       final result = a.lerp(b, 0.5);
@@ -386,14 +380,20 @@ void main() {
   group('All ThemeExtension classes', () {
     test('are ThemeExtension instances', () {
       expect(TwColorTheme.defaults, isA<ThemeExtension<TwColorTheme>>());
-      expect(TwSpacingTheme.defaults, isA<ThemeExtension<TwSpacingTheme>>());
+      expect(
+        TwSpacingTheme.defaults,
+        isA<ThemeExtension<TwSpacingTheme>>(),
+      );
       expect(
         TwTypographyTheme.defaults,
         isA<ThemeExtension<TwTypographyTheme>>(),
       );
       expect(TwRadiusTheme.defaults, isA<ThemeExtension<TwRadiusTheme>>());
       expect(TwShadowTheme.defaults, isA<ThemeExtension<TwShadowTheme>>());
-      expect(TwOpacityTheme.defaults, isA<ThemeExtension<TwOpacityTheme>>());
+      expect(
+        TwOpacityTheme.defaults,
+        isA<ThemeExtension<TwOpacityTheme>>(),
+      );
       expect(
         TwBreakpointTheme.defaults,
         isA<ThemeExtension<TwBreakpointTheme>>(),

@@ -2,13 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../tokens/breakpoints.dart';
-import '../tokens/colors.dart';
-import '../tokens/opacity.dart';
-import '../tokens/radius.dart';
-import '../tokens/shadows.dart';
-import '../tokens/spacing.dart';
-import '../tokens/typography.dart';
+import 'package:tailwind_flutter/src/tokens/breakpoints.dart';
+import 'package:tailwind_flutter/src/tokens/colors.dart';
+import 'package:tailwind_flutter/src/tokens/opacity.dart';
+import 'package:tailwind_flutter/src/tokens/radius.dart';
+import 'package:tailwind_flutter/src/tokens/shadows.dart';
+import 'package:tailwind_flutter/src/tokens/spacing.dart';
+import 'package:tailwind_flutter/src/tokens/typography.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -287,7 +287,8 @@ class TwColorTheme extends ThemeExtension<TwColorTheme> {
 
 /// Theme extension providing the Tailwind CSS spacing scale.
 ///
-/// Contains all 35 named spacing values. Each defaults to [TwSpacing] constants.
+/// Contains all 35 named spacing values. Each defaults to [TwSpacing]
+/// constants.
 class TwSpacingTheme extends ThemeExtension<TwSpacingTheme> {
   /// Creates a [TwSpacingTheme] with all 35 spacing values.
   const TwSpacingTheme({

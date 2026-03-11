@@ -4,20 +4,16 @@
 // Exports are organized by tier and uncommented as each module is implemented.
 
 export 'src/tailwind_flutter_version.dart';
-
-// ----- Tokens (Tier 1) -----
-// export 'src/tokens/colors.dart';
-// export 'src/tokens/spacing.dart';
-// export 'src/tokens/typography.dart';
-// export 'src/tokens/radius.dart';
-// export 'src/tokens/shadows.dart';
+export 'src/theme/tw_theme.dart';
+export 'src/theme/tw_theme_data.dart';
+export 'src/theme/tw_theme_extension.dart';
 export 'src/tokens/breakpoints.dart';
+export 'src/tokens/colors.dart';
 export 'src/tokens/opacity.dart';
-
-// ----- Theme (Tier 1 integration) -----
-// export 'src/theme/tw_theme.dart';
-// export 'src/theme/tw_theme_data.dart';
-// export 'src/theme/tw_theme_extension.dart';
+export 'src/tokens/radius.dart';
+export 'src/tokens/shadows.dart';
+export 'src/tokens/spacing.dart';
+export 'src/tokens/typography.dart';
 
 // ----- Widget Extensions (Tier 2) -----
 // export 'src/extensions/widget_extensions.dart';

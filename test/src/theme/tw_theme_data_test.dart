@@ -117,26 +117,30 @@ void main() {
 
     testWidgets('context.tw throws FlutterError when no TwTheme ancestor',
         (tester) async {
-      FlutterError? caughtError;
+      late BuildContext capturedContext;
 
       await tester.pumpWidget(
         MaterialApp(
           // No TwTheme extensions injected
           home: Builder(
             builder: (context) {
-              try {
-                context.tw;
-              } on FlutterError catch (e) {
-                caughtError = e;
-              }
+              capturedContext = context;
               return const SizedBox();
             },
           ),
         ),
       );
 
-      expect(caughtError, isNotNull);
-      expect(caughtError!.message, contains('TwTheme'));
+      expect(
+        () => capturedContext.tw,
+        throwsA(
+          isA<FlutterError>().having(
+            (e) => e.message,
+            'message',
+            contains('TwTheme'),
+          ),
+        ),
+      );
     });
 
     testWidgets('context.twMaybe returns null when no TwTheme ancestor',
