@@ -9,13 +9,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Tokens — Colors
 
-- [ ] **TOK-01**: Complete Tailwind v4 color palette — 22 families × 11 shades (242 colors) as `static const Color` values in `TwColors` abstract final class
-- [ ] **TOK-02**: Semantic colors — `black` (#000), `white` (#FFF), `transparent` as named constants
+- [x] **TOK-01**: Complete Tailwind v4 color palette — 22 families × 11 shades (242 colors) as `static const Color` values in `TwColors` abstract final class
+- [x] **TOK-02**: Semantic colors — `black` (#000), `white` (#FFF), `transparent` as named constants
 
 ### Tokens — Spacing
 
-- [ ] **TOK-03**: Full spacing scale — 37 values from 0 to 96 (0px to 384px, 4px base unit) using extension type `TwSpace` that `implements double`
-- [ ] **TOK-04**: EdgeInsets convenience getters on `TwSpace` — `.all`, `.x`, `.y`, `.top`, `.bottom`, `.left`, `.right`
+- [x] **TOK-03**: Full spacing scale — 37 values from 0 to 96 (0px to 384px, 4px base unit) using extension type `TwSpace` that `implements double`
+- [x] **TOK-04**: EdgeInsets convenience getters on `TwSpace` — `.all`, `.x`, `.y`, `.top`, `.bottom`, `.left`, `.right`
 
 ### Tokens — Typography
 
@@ -111,10 +111,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TOK-01 | Phase 2 | Pending |
-| TOK-02 | Phase 2 | Pending |
-| TOK-03 | Phase 2 | Pending |
-| TOK-04 | Phase 2 | Pending |
+| TOK-01 | Phase 2 | Complete |
+| TOK-02 | Phase 2 | Complete |
+| TOK-03 | Phase 2 | Complete |
+| TOK-04 | Phase 2 | Complete |
 | TOK-05 | Phase 2 | Complete |
 | TOK-06 | Phase 2 | Complete |
 | TOK-07 | Phase 2 | Complete |

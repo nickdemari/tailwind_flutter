@@ -49,7 +49,7 @@ Plans:
 **Plans:** 3/4 plans executed
 
 Plans:
-- [ ] 02-01-PLAN.md — Colors (242 + semantics) and spacing (35 values + EdgeInsets getters)
+- [x] 02-01-PLAN.md — Colors (242 + semantics) and spacing (35 values + EdgeInsets getters)
 - [ ] 02-02-PLAN.md — Typography (font sizes, weights, letter spacing, line heights), radius, and shadows
 - [ ] 02-03-PLAN.md — Opacity scale and breakpoint constants
 - [ ] 02-04-PLAN.md — 7 ThemeExtension classes, TwThemeData resolver, TwTheme widget, presets, barrel export
