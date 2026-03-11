@@ -224,6 +224,27 @@ void main() {
       expect(copied.base, equals(customBase));
       expect(copied.xl, equals(TwFontSizes.xl));
     });
+
+    test('lerp interpolates font sizes, weights, and doubles', () {
+      const a = TwTypographyTheme.defaults;
+      final b = TwTypographyTheme.defaults.copyWith(
+        base: const TwFontSize(32, 2),
+        leadingNormal: 2,
+        letterNormal: 0.1,
+      );
+
+      final result = a.lerp(b, 0.5);
+      // lerpDouble(16, 32, 0.5) = 24.0
+      expect(result.base.value, closeTo(24, 0.01));
+      // lerpDouble(1.5, 2.0, 0.5) = 1.75
+      expect(result.base.lineHeight, closeTo(1.75, 0.01));
+      // leadingNormal: lerpDouble(1.5, 2.0, 0.5) = 1.75
+      expect(result.leadingNormal, closeTo(1.75, 0.01));
+      // letterNormal: lerpDouble(0, 0.1, 0.5) = 0.05
+      expect(result.letterNormal, closeTo(0.05, 0.001));
+      // Font weight should stay the same (same inputs)
+      expect(result.bold, equals(FontWeight.w700));
+    });
   });
 
   // ---------------------------------------------------------------------------
