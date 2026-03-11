@@ -69,7 +69,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **INF-06**: `README.md` with quick-start guide, API overview, and comparison to Tailwind CSS
 - [x] **INF-07**: `analysis_options.yaml` with `very_good_analysis` + strict mode, zero warnings
 - [ ] **INF-08**: `CHANGELOG.md` following Keep a Changelog format
-- [ ] **INF-09**: CI/CD via GitHub Actions (analyze, test, pana score, coverage)
+- [x] **INF-09**: CI/CD via GitHub Actions (analyze, test, pana score, coverage)
 - [ ] **INF-10**: Dartdoc coverage ≥ 80% on all public APIs
 
 ## v2 Requirements
@@ -150,7 +150,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INF-06 | Phase 5 | Pending |
 | INF-07 | Phase 1 | Complete |
 | INF-08 | Phase 5 | Pending |
-| INF-09 | Phase 1 | Pending |
+| INF-09 | Phase 1 | Complete |
 | INF-10 | Phase 5 | Pending |
 
 **Coverage:**
