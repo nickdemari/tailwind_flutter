@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Infrastructure Foundation** - Package scaffolding, CI/CD pipeline, linting, barrel exports, and analysis — everything needed before writing a single token (completed 2026-03-11)
 - [x] **Phase 2: Token System + Theme Integration** - All 7 token categories as const Dart values with extension types, plus ThemeExtension classes, TwTheme widget, and context.tw resolver (completed 2026-03-11)
-- [ ] **Phase 3: Widget Extensions** - Padding, margin, background, radius, opacity, shadow, sizing, alignment, clip, and text-specific chaining extensions on Widget/Text
+- [x] **Phase 3: Widget Extensions** - Padding, margin, background, radius, opacity, shadow, sizing, alignment, clip, and text-specific chaining extensions on Widget/Text (completed 2026-03-11)
 - [ ] **Phase 4: Style Composition** - TwStyle immutable class with merge, resolve, and apply — the composable styling tier that ties everything together
 - [ ] **Phase 5: Polish + Publication** - Example app, golden tests, README, CHANGELOG, dartdoc coverage audit, and pana score verification for 160/160 pub.dev points
 
@@ -63,7 +63,7 @@ Plans:
   2. Text widget extensions (.bold(), .italic(), .fontSize(), .textColor(), etc.) preserve ALL original Text constructor parameters
   3. Extension methods compose correctly regardless of chaining order
   4. All extension methods have unit test coverage >= 85%
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 03-01-PLAN.md — TwWidgetExtensions: padding, margin, background, radius, opacity, shadow, sizing, alignment, clip (EXT-01 through EXT-09)
@@ -108,6 +108,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 2/2 | Complete    | 2026-03-11 |
 | 2. Token System + Theme Integration | 4/4 | Complete | 2026-03-11 |
-| 3. Widget Extensions | 1/2 | In Progress|  |
+| 3. Widget Extensions | 1/2 | Complete    | 2026-03-11 |
 | 4. Style Composition | 0/1 | Not started | - |
 | 5. Polish + Publication | 0/2 | Not started | - |

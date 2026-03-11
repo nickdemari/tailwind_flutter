@@ -48,7 +48,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **EXT-06**: Shadow extension — `.shadow(List<BoxShadow>)`
 - [x] **EXT-07**: Sizing extensions — `.width(double)`, `.height(double)`, `.size(double, double)`
 - [x] **EXT-08**: Alignment extensions — `.center()`, `.align(Alignment)`
-- [x] **EXT-09**: Clip extensions — `.clipRect()`, `.clipOval()`, `.clipRounded(double)`
+- [x] **EXT-09**: Clip extensions — `.clipRect()`, `.clipOval()` (`.clipRounded()` removed — `.rounded()` from EXT-04 already provides ClipRRect wrapping)
 - [x] **EXT-10**: Text-specific extensions on `Text` widget — `.bold()`, `.italic()`, `.fontSize(double)`, `.textColor(Color)`, `.letterSpacing(double)`, `.lineHeight(double)`, `.fontWeight(FontWeight)` — must preserve ALL Text constructor parameters
 
 ### Style Composition
