@@ -30,11 +30,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. GitHub Actions CI pipeline runs analyze + test on every push
   4. `dart pub publish --dry-run` reports no blocking errors (conventions, platforms, analysis all pass)
   5. Barrel export file exists and is structured for organized category exports
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Package scaffold (pubspec, analysis, license, barrel export, stubs, smoke test)
+- [ ] 01-02-PLAN.md — GitHub Actions CI pipeline + local validation
 
 ### Phase 2: Token System + Theme Integration
 **Goal**: Developers can import tailwind_flutter and use complete Tailwind v4 design tokens as type-safe const values, either directly (TwColors.blue.shade500) or via theme resolution (context.tw.colors)
@@ -105,7 +105,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Infrastructure Foundation | 0/2 | Not started | - |
+| 1. Infrastructure Foundation | 0/2 | Planning complete | - |
 | 2. Token System + Theme Integration | 0/3 | Not started | - |
 | 3. Widget Extensions | 0/2 | Not started | - |
 | 4. Style Composition | 0/1 | Not started | - |
