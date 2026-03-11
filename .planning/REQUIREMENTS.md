@@ -19,15 +19,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Tokens — Typography
 
-- [ ] **TOK-05**: Typography scale — 13 font sizes (xs/12px through 9xl/128px) each with paired default line-height, using extension type `TwFontSize`
-- [ ] **TOK-06**: Font weight constants — 9 weights (thin/100 through black/900) as `FontWeight` values
-- [ ] **TOK-07**: Letter spacing scale — 6 named values (tighter/-0.05em through widest/0.1em)
-- [ ] **TOK-08**: Line height scale — 6 named ratios (none/1.0 through loose/2.0)
+- [x] **TOK-05**: Typography scale — 13 font sizes (xs/12px through 9xl/128px) each with paired default line-height, using extension type `TwFontSize`
+- [x] **TOK-06**: Font weight constants — 9 weights (thin/100 through black/900) as `FontWeight` values
+- [x] **TOK-07**: Letter spacing scale — 6 named values (tighter/-0.05em through widest/0.1em)
+- [x] **TOK-08**: Line height scale — 6 named ratios (none/1.0 through loose/2.0)
 
 ### Tokens — Visual
 
-- [ ] **TOK-09**: Border radius scale — 10 values (none/0 through full/9999) using extension type `TwRadius` with `BorderRadius` getters
-- [ ] **TOK-10**: Box shadow presets — 7 elevation levels (2xs through 2xl) plus inner and none as `List<BoxShadow>` records
+- [x] **TOK-09**: Border radius scale — 10 values (none/0 through full/9999) using extension type `TwRadius` with `BorderRadius` getters
+- [x] **TOK-10**: Box shadow presets — 7 elevation levels (2xs through 2xl) plus inner and none as `List<BoxShadow>` records
 - [x] **TOK-11**: Opacity scale — standard Tailwind opacity values (0, 5, 10, 15...95, 100) as `double` constants
 - [x] **TOK-12**: Breakpoint constants — 5 responsive thresholds (sm/640, md/768, lg/1024, xl/1280, 2xl/1536)
 
@@ -115,12 +115,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TOK-02 | Phase 2 | Pending |
 | TOK-03 | Phase 2 | Pending |
 | TOK-04 | Phase 2 | Pending |
-| TOK-05 | Phase 2 | Pending |
-| TOK-06 | Phase 2 | Pending |
-| TOK-07 | Phase 2 | Pending |
-| TOK-08 | Phase 2 | Pending |
-| TOK-09 | Phase 2 | Pending |
-| TOK-10 | Phase 2 | Pending |
+| TOK-05 | Phase 2 | Complete |
+| TOK-06 | Phase 2 | Complete |
+| TOK-07 | Phase 2 | Complete |
+| TOK-08 | Phase 2 | Complete |
+| TOK-09 | Phase 2 | Complete |
+| TOK-10 | Phase 2 | Complete |
 | TOK-11 | Phase 2 | Complete |
 | TOK-12 | Phase 2 | Complete |
 | THM-01 | Phase 2 | Pending |

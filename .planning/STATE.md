@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-03-PLAN.md
-last_updated: "2026-03-11T22:17:26.978Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-11T22:19:11.222Z"
 last_activity: 2026-03-11 -- Completed 02-03 opacity + breakpoints
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 6
-  completed_plans: 3
+  completed_plans: 5
   percent: 50
 ---
 
@@ -51,6 +51,7 @@ Progress: [#####-----] 50%
 - Trend: Stable
 
 *Updated after each plan completion*
+| Phase 02 P02 | 4min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -67,6 +68,8 @@ Recent decisions affecting current work:
 - [01-02]: Custom CI workflow over VGV reusable workflows -- avoids unnecessary very_good_cli + bloc_tools deps
 - [01-02]: Pana threshold 120 for Phase 1 (actual score 150/160), will ratchet to 160 in Phase 5
 - [Phase 02-03]: Used plain abstract final class with static const double for opacity and breakpoints -- no extension type wrapper needed for simple double tokens
+- [Phase 02]: Letter spacing stored as em multipliers -- users multiply by fontSize for absolute value
+- [Phase 02]: Inner shadow is an outer shadow approximation -- Flutter lacks inset BoxShadow support
 
 ### Pending Todos
 
@@ -79,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-11T22:17:26.971Z
-Stopped at: Completed 02-03-PLAN.md
+Last session: 2026-03-11T22:18:56.168Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None

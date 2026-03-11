@@ -46,7 +46,7 @@ Plans:
   3. Typography, radius, shadow, opacity, and breakpoint tokens are all accessible as const values with correct types
   4. Wrapping a widget tree in TwTheme provides token access via context.tw with light and dark presets
   5. All token values and theme resolution have unit test coverage >= 85%
-**Plans:** 4 plans
+**Plans:** 3/4 plans executed
 
 Plans:
 - [ ] 02-01-PLAN.md — Colors (242 + semantics) and spacing (35 values + EdgeInsets getters)
@@ -107,7 +107,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 2/2 | Complete    | 2026-03-11 |
-| 2. Token System + Theme Integration | 0/4 | Not started | - |
+| 2. Token System + Theme Integration | 3/4 | In Progress|  |
 | 3. Widget Extensions | 0/2 | Not started | - |
 | 4. Style Composition | 0/1 | Not started | - |
 | 5. Polish + Publication | 0/2 | Not started | - |
