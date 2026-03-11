@@ -63,11 +63,11 @@ Plans:
   2. Text widget extensions (.bold(), .italic(), .fontSize(), .textColor(), etc.) preserve ALL original Text constructor parameters
   3. Extension methods compose correctly regardless of chaining order
   4. All extension methods have unit test coverage >= 85%
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — TwWidgetExtensions: padding, margin, background, radius, opacity, shadow, sizing, alignment, clip (EXT-01 through EXT-09)
+- [ ] 03-02-PLAN.md — TwTextExtensions: text styling methods + barrel export update + stub cleanup (EXT-10)
 
 ### Phase 4: Style Composition
 **Goal**: Developers can define reusable, composable style objects that merge, resolve dark/light variants, and apply to widgets in a single call — the "CSS class" equivalent for Flutter
