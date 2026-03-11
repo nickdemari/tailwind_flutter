@@ -34,7 +34,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Package scaffold (pubspec, analysis, license, barrel export, stubs, smoke test)
-- [ ] 01-02-PLAN.md — GitHub Actions CI pipeline + local validation
+- [x] 01-02-PLAN.md — GitHub Actions CI pipeline + local validation
 
 ### Phase 2: Token System + Theme Integration
 **Goal**: Developers can import tailwind_flutter and use complete Tailwind v4 design tokens as type-safe const values, either directly (TwColors.blue.shade500) or via theme resolution (context.tw.colors)
@@ -46,12 +46,13 @@ Plans:
   3. Typography, radius, shadow, opacity, and breakpoint tokens are all accessible as const values with correct types
   4. Wrapping a widget tree in TwTheme provides token access via context.tw with light and dark presets
   5. All token values and theme resolution have unit test coverage >= 85%
-**Plans**: TBD
+**Plans:** 4 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md — Colors (242 + semantics) and spacing (35 values + EdgeInsets getters)
+- [ ] 02-02-PLAN.md — Typography (font sizes, weights, letter spacing, line heights), radius, and shadows
+- [ ] 02-03-PLAN.md — Opacity scale and breakpoint constants
+- [ ] 02-04-PLAN.md — 7 ThemeExtension classes, TwThemeData resolver, TwTheme widget, presets, barrel export
 
 ### Phase 3: Widget Extensions
 **Goal**: Developers can chain Tailwind-style utility methods on any Widget (and Text-specific methods on Text) to apply styling without manually nesting Padding/Container/DecoratedBox widgets
@@ -106,7 +107,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 2/2 | Complete    | 2026-03-11 |
-| 2. Token System + Theme Integration | 0/3 | Not started | - |
+| 2. Token System + Theme Integration | 0/4 | Not started | - |
 | 3. Widget Extensions | 0/2 | Not started | - |
 | 4. Style Composition | 0/1 | Not started | - |
 | 5. Polish + Publication | 0/2 | Not started | - |
