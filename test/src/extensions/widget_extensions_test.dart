@@ -146,7 +146,14 @@ void main() {
           MaterialApp(home: const SizedBox().bg(Colors.red)),
         );
 
-        final coloredBox = tester.widget<ColoredBox>(find.byType(ColoredBox));
+        // Find the ColoredBox that is an ancestor of our SizedBox,
+        // avoiding MaterialApp's internal ColoredBoxes.
+        final coloredBox = tester.widget<ColoredBox>(
+          find.ancestor(
+            of: find.byType(SizedBox),
+            matching: find.byType(ColoredBox),
+          ).first,
+        );
         expect(coloredBox.color, Colors.red);
       });
     });
@@ -210,35 +217,34 @@ void main() {
     group('sizing extensions', () {
       testWidgets('.width() wraps in SizedBox with specified width',
           (tester) async {
+        // Use Placeholder instead of SizedBox to avoid shadowing --
+        // SizedBox already has a `width` property that hides the extension.
         await tester.pumpWidget(
-          MaterialApp(home: const SizedBox().width(100)),
+          MaterialApp(home: const Placeholder().width(100)),
         );
 
-        final allSizedBoxes = find.byType(SizedBox);
-        // The outer SizedBox is the one added by .width()
-        final sizedBox = tester.widget<SizedBox>(allSizedBoxes.first);
+        final sizedBox = tester.widget<SizedBox>(find.byType(SizedBox));
         expect(sizedBox.width, 100);
       });
 
       testWidgets('.height() wraps in SizedBox with specified height',
           (tester) async {
+        // Use Placeholder to avoid SizedBox.height shadowing the extension.
         await tester.pumpWidget(
-          MaterialApp(home: const SizedBox().height(100)),
+          MaterialApp(home: const Placeholder().height(100)),
         );
 
-        final allSizedBoxes = find.byType(SizedBox);
-        final sizedBox = tester.widget<SizedBox>(allSizedBoxes.first);
+        final sizedBox = tester.widget<SizedBox>(find.byType(SizedBox));
         expect(sizedBox.height, 100);
       });
 
       testWidgets('.size() wraps in SizedBox with width and height',
           (tester) async {
         await tester.pumpWidget(
-          MaterialApp(home: const SizedBox().size(100, 200)),
+          MaterialApp(home: const Placeholder().size(100, 200)),
         );
 
-        final allSizedBoxes = find.byType(SizedBox);
-        final sizedBox = tester.widget<SizedBox>(allSizedBoxes.first);
+        final sizedBox = tester.widget<SizedBox>(find.byType(SizedBox));
         expect(sizedBox.width, 100);
         expect(sizedBox.height, 200);
       });
@@ -294,9 +300,14 @@ void main() {
           MaterialApp(home: const SizedBox().p(8).bg(Colors.blue)),
         );
 
-        // ColoredBox should be the parent of Padding
-        final coloredBox =
-            tester.widget<ColoredBox>(find.byType(ColoredBox));
+        // Find our ColoredBox (the one wrapping a Padding, not
+        // MaterialApp's internal ones).
+        final coloredBox = tester.widget<ColoredBox>(
+          find.ancestor(
+            of: find.byType(Padding),
+            matching: find.byType(ColoredBox),
+          ).first,
+        );
         expect(coloredBox.child, isA<Padding>());
 
         // Padding should be the parent of SizedBox
@@ -327,8 +338,14 @@ void main() {
         expect(clipRRect.borderRadius, BorderRadius.circular(8));
         expect(clipRRect.child, isA<ColoredBox>());
 
-        final coloredBox =
-            tester.widget<ColoredBox>(find.byType(ColoredBox));
+        // Find the ColoredBox that is our extension wrapper (ancestor of
+        // our SizedBox child, not MaterialApp internals).
+        final coloredBox = tester.widget<ColoredBox>(
+          find.ancestor(
+            of: find.byType(SizedBox),
+            matching: find.byType(ColoredBox),
+          ).first,
+        );
         expect(coloredBox.color, Colors.red);
         expect(coloredBox.child, isA<Padding>());
 
