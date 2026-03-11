@@ -49,7 +49,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **EXT-07**: Sizing extensions — `.width(double)`, `.height(double)`, `.size(double, double)`
 - [x] **EXT-08**: Alignment extensions — `.center()`, `.align(Alignment)`
 - [x] **EXT-09**: Clip extensions — `.clipRect()`, `.clipOval()`, `.clipRounded(double)`
-- [ ] **EXT-10**: Text-specific extensions on `Text` widget — `.bold()`, `.italic()`, `.fontSize(double)`, `.textColor(Color)`, `.letterSpacing(double)`, `.lineHeight(double)`, `.fontWeight(FontWeight)` — must preserve ALL Text constructor parameters
+- [x] **EXT-10**: Text-specific extensions on `Text` widget — `.bold()`, `.italic()`, `.fontSize(double)`, `.textColor(Color)`, `.letterSpacing(double)`, `.lineHeight(double)`, `.fontWeight(FontWeight)` — must preserve ALL Text constructor parameters
 
 ### Style Composition
 
@@ -136,7 +136,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EXT-07 | Phase 3 | Complete |
 | EXT-08 | Phase 3 | Complete |
 | EXT-09 | Phase 3 | Complete |
-| EXT-10 | Phase 3 | Pending |
+| EXT-10 | Phase 3 | Complete |
 | STY-01 | Phase 4 | Pending |
 | STY-02 | Phase 4 | Pending |
 | STY-03 | Phase 4 | Pending |
