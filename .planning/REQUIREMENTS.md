@@ -40,15 +40,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Widget Extensions
 
-- [ ] **EXT-01**: Padding extensions — `p`, `px`, `py`, `pt`, `pb`, `pl`, `pr` accepting `double`
-- [ ] **EXT-02**: Margin extensions — `m`, `mx`, `my`, `mt`, `mb`, `ml`, `mr`
-- [ ] **EXT-03**: Background color extension — `.bg(Color)`
-- [ ] **EXT-04**: Border radius extension — `.rounded(double)`, `.roundedFull()`
-- [ ] **EXT-05**: Opacity extension — `.opacity(double)`
-- [ ] **EXT-06**: Shadow extension — `.shadow(List<BoxShadow>)`
-- [ ] **EXT-07**: Sizing extensions — `.width(double)`, `.height(double)`, `.size(double, double)`
-- [ ] **EXT-08**: Alignment extensions — `.center()`, `.align(Alignment)`
-- [ ] **EXT-09**: Clip extensions — `.clipRect()`, `.clipOval()`, `.clipRounded(double)`
+- [x] **EXT-01**: Padding extensions — `p`, `px`, `py`, `pt`, `pb`, `pl`, `pr` accepting `double`
+- [x] **EXT-02**: Margin extensions — `m`, `mx`, `my`, `mt`, `mb`, `ml`, `mr`
+- [x] **EXT-03**: Background color extension — `.bg(Color)`
+- [x] **EXT-04**: Border radius extension — `.rounded(double)`, `.roundedFull()`
+- [x] **EXT-05**: Opacity extension — `.opacity(double)`
+- [x] **EXT-06**: Shadow extension — `.shadow(List<BoxShadow>)`
+- [x] **EXT-07**: Sizing extensions — `.width(double)`, `.height(double)`, `.size(double, double)`
+- [x] **EXT-08**: Alignment extensions — `.center()`, `.align(Alignment)`
+- [x] **EXT-09**: Clip extensions — `.clipRect()`, `.clipOval()`, `.clipRounded(double)`
 - [ ] **EXT-10**: Text-specific extensions on `Text` widget — `.bold()`, `.italic()`, `.fontSize(double)`, `.textColor(Color)`, `.letterSpacing(double)`, `.lineHeight(double)`, `.fontWeight(FontWeight)` — must preserve ALL Text constructor parameters
 
 ### Style Composition
@@ -127,15 +127,15 @@ Which phases cover which requirements. Updated during roadmap creation.
 | THM-02 | Phase 2 | Complete |
 | THM-03 | Phase 2 | Complete |
 | THM-04 | Phase 2 | Complete |
-| EXT-01 | Phase 3 | Pending |
-| EXT-02 | Phase 3 | Pending |
-| EXT-03 | Phase 3 | Pending |
-| EXT-04 | Phase 3 | Pending |
-| EXT-05 | Phase 3 | Pending |
-| EXT-06 | Phase 3 | Pending |
-| EXT-07 | Phase 3 | Pending |
-| EXT-08 | Phase 3 | Pending |
-| EXT-09 | Phase 3 | Pending |
+| EXT-01 | Phase 3 | Complete |
+| EXT-02 | Phase 3 | Complete |
+| EXT-03 | Phase 3 | Complete |
+| EXT-04 | Phase 3 | Complete |
+| EXT-05 | Phase 3 | Complete |
+| EXT-06 | Phase 3 | Complete |
+| EXT-07 | Phase 3 | Complete |
+| EXT-08 | Phase 3 | Complete |
+| EXT-09 | Phase 3 | Complete |
 | EXT-10 | Phase 3 | Pending |
 | STY-01 | Phase 4 | Pending |
 | STY-02 | Phase 4 | Pending |
