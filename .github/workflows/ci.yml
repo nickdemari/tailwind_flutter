@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze:
+    name: Analyze (Flutter ${{ matrix.flutter-version || 'stable' }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flutter-version: ["3.19.0", ""]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ matrix.flutter-version }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: dart format --set-exit-if-changed lib test
+      - run: flutter analyze --no-fatal-infos
+
+  test:
+    name: Test (Flutter ${{ matrix.flutter-version || 'stable' }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flutter-version: ["3.19.0", ""]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ matrix.flutter-version }}
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter test
+
+  publish-check:
+    name: Publish Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: dart pub publish --dry-run
+
+  pana:
+    name: Package Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: dart pub global activate pana
+      - run: dart pub global run pana --no-warning --exit-code-threshold 120
