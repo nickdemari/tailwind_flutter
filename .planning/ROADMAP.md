@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Package scaffold (pubspec, analysis, license, barrel export, stubs, smoke test)
+- [x] 01-01-PLAN.md — Package scaffold (pubspec, analysis, license, barrel export, stubs, smoke test)
 - [ ] 01-02-PLAN.md — GitHub Actions CI pipeline + local validation
 
 ### Phase 2: Token System + Theme Integration

@@ -61,13 +61,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Infrastructure
 
-- [ ] **INF-01**: Package structure targeting 160/160 pub.dev points (conventions, docs, platforms, analysis, deps)
-- [ ] **INF-02**: Barrel export file (`tailwind_flutter.dart`) with organized exports
+- [x] **INF-01**: Package structure targeting 160/160 pub.dev points (conventions, docs, platforms, analysis, deps)
+- [x] **INF-02**: Barrel export file (`tailwind_flutter.dart`) with organized exports
 - [ ] **INF-03**: Example app in `example/` demonstrating all three tiers
 - [ ] **INF-04**: Unit tests for all token values, extension methods, theme resolution
 - [ ] **INF-05**: Golden tests for styled widgets across light/dark themes (using Ahem font for CI stability)
 - [ ] **INF-06**: `README.md` with quick-start guide, API overview, and comparison to Tailwind CSS
-- [ ] **INF-07**: `analysis_options.yaml` with `very_good_analysis` + strict mode, zero warnings
+- [x] **INF-07**: `analysis_options.yaml` with `very_good_analysis` + strict mode, zero warnings
 - [ ] **INF-08**: `CHANGELOG.md` following Keep a Changelog format
 - [ ] **INF-09**: CI/CD via GitHub Actions (analyze, test, pana score, coverage)
 - [ ] **INF-10**: Dartdoc coverage ≥ 80% on all public APIs
@@ -142,13 +142,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STY-03 | Phase 4 | Pending |
 | STY-04 | Phase 4 | Pending |
 | STY-05 | Phase 4 | Pending |
-| INF-01 | Phase 1 | Pending |
-| INF-02 | Phase 1 | Pending |
+| INF-01 | Phase 1 | Complete |
+| INF-02 | Phase 1 | Complete |
 | INF-03 | Phase 5 | Pending |
 | INF-04 | Phase 2 | Pending |
 | INF-05 | Phase 5 | Pending |
 | INF-06 | Phase 5 | Pending |
-| INF-07 | Phase 1 | Pending |
+| INF-07 | Phase 1 | Complete |
 | INF-08 | Phase 5 | Pending |
 | INF-09 | Phase 1 | Pending |
 | INF-10 | Phase 5 | Pending |
