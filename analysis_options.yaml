@@ -1,0 +1,12 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+# Uncomment when public API documentation is required (Phase 5+)
+# linter:
+#   rules:
+#     public_member_api_docs: true
