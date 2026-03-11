@@ -28,8 +28,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **TOK-09**: Border radius scale — 10 values (none/0 through full/9999) using extension type `TwRadius` with `BorderRadius` getters
 - [ ] **TOK-10**: Box shadow presets — 7 elevation levels (2xs through 2xl) plus inner and none as `List<BoxShadow>` records
-- [ ] **TOK-11**: Opacity scale — standard Tailwind opacity values (0, 5, 10, 15...95, 100) as `double` constants
-- [ ] **TOK-12**: Breakpoint constants — 5 responsive thresholds (sm/640, md/768, lg/1024, xl/1280, 2xl/1536)
+- [x] **TOK-11**: Opacity scale — standard Tailwind opacity values (0, 5, 10, 15...95, 100) as `double` constants
+- [x] **TOK-12**: Breakpoint constants — 5 responsive thresholds (sm/640, md/768, lg/1024, xl/1280, 2xl/1536)
 
 ### Theme Integration
 
@@ -121,8 +121,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TOK-08 | Phase 2 | Pending |
 | TOK-09 | Phase 2 | Pending |
 | TOK-10 | Phase 2 | Pending |
-| TOK-11 | Phase 2 | Pending |
-| TOK-12 | Phase 2 | Pending |
+| TOK-11 | Phase 2 | Complete |
+| TOK-12 | Phase 2 | Complete |
 | THM-01 | Phase 2 | Pending |
 | THM-02 | Phase 2 | Pending |
 | THM-03 | Phase 2 | Pending |
