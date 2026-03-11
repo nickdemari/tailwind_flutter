@@ -111,53 +111,53 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TOK-01 | TBD | Pending |
-| TOK-02 | TBD | Pending |
-| TOK-03 | TBD | Pending |
-| TOK-04 | TBD | Pending |
-| TOK-05 | TBD | Pending |
-| TOK-06 | TBD | Pending |
-| TOK-07 | TBD | Pending |
-| TOK-08 | TBD | Pending |
-| TOK-09 | TBD | Pending |
-| TOK-10 | TBD | Pending |
-| TOK-11 | TBD | Pending |
-| TOK-12 | TBD | Pending |
-| THM-01 | TBD | Pending |
-| THM-02 | TBD | Pending |
-| THM-03 | TBD | Pending |
-| THM-04 | TBD | Pending |
-| EXT-01 | TBD | Pending |
-| EXT-02 | TBD | Pending |
-| EXT-03 | TBD | Pending |
-| EXT-04 | TBD | Pending |
-| EXT-05 | TBD | Pending |
-| EXT-06 | TBD | Pending |
-| EXT-07 | TBD | Pending |
-| EXT-08 | TBD | Pending |
-| EXT-09 | TBD | Pending |
-| EXT-10 | TBD | Pending |
-| STY-01 | TBD | Pending |
-| STY-02 | TBD | Pending |
-| STY-03 | TBD | Pending |
-| STY-04 | TBD | Pending |
-| STY-05 | TBD | Pending |
-| INF-01 | TBD | Pending |
-| INF-02 | TBD | Pending |
-| INF-03 | TBD | Pending |
-| INF-04 | TBD | Pending |
-| INF-05 | TBD | Pending |
-| INF-06 | TBD | Pending |
-| INF-07 | TBD | Pending |
-| INF-08 | TBD | Pending |
-| INF-09 | TBD | Pending |
-| INF-10 | TBD | Pending |
+| TOK-01 | Phase 2 | Pending |
+| TOK-02 | Phase 2 | Pending |
+| TOK-03 | Phase 2 | Pending |
+| TOK-04 | Phase 2 | Pending |
+| TOK-05 | Phase 2 | Pending |
+| TOK-06 | Phase 2 | Pending |
+| TOK-07 | Phase 2 | Pending |
+| TOK-08 | Phase 2 | Pending |
+| TOK-09 | Phase 2 | Pending |
+| TOK-10 | Phase 2 | Pending |
+| TOK-11 | Phase 2 | Pending |
+| TOK-12 | Phase 2 | Pending |
+| THM-01 | Phase 2 | Pending |
+| THM-02 | Phase 2 | Pending |
+| THM-03 | Phase 2 | Pending |
+| THM-04 | Phase 2 | Pending |
+| EXT-01 | Phase 3 | Pending |
+| EXT-02 | Phase 3 | Pending |
+| EXT-03 | Phase 3 | Pending |
+| EXT-04 | Phase 3 | Pending |
+| EXT-05 | Phase 3 | Pending |
+| EXT-06 | Phase 3 | Pending |
+| EXT-07 | Phase 3 | Pending |
+| EXT-08 | Phase 3 | Pending |
+| EXT-09 | Phase 3 | Pending |
+| EXT-10 | Phase 3 | Pending |
+| STY-01 | Phase 4 | Pending |
+| STY-02 | Phase 4 | Pending |
+| STY-03 | Phase 4 | Pending |
+| STY-04 | Phase 4 | Pending |
+| STY-05 | Phase 4 | Pending |
+| INF-01 | Phase 1 | Pending |
+| INF-02 | Phase 1 | Pending |
+| INF-03 | Phase 5 | Pending |
+| INF-04 | Phase 2 | Pending |
+| INF-05 | Phase 5 | Pending |
+| INF-06 | Phase 5 | Pending |
+| INF-07 | Phase 1 | Pending |
+| INF-08 | Phase 5 | Pending |
+| INF-09 | Phase 1 | Pending |
+| INF-10 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 41 total
-- Mapped to phases: 0
-- Unmapped: 41 ⚠️
+- Mapped to phases: 41
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-11*
-*Last updated: 2026-03-11 after initial definition*
+*Last updated: 2026-03-11 after roadmap creation*
