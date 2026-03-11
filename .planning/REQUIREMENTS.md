@@ -33,10 +33,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Theme Integration
 
-- [ ] **THM-01**: `ThemeExtension<T>` class for each token category (7 classes) with `copyWith` and `lerp` — split per category, not monolithic
-- [ ] **THM-02**: `TwTheme` widget that injects all `ThemeExtension`s into `ThemeData`
-- [ ] **THM-03**: `TwThemeData` resolver accessed via `context.tw` with null-safety (`maybeOf`)
-- [ ] **THM-04**: Default light and dark theme presets (`TwThemeData.light()`, `TwThemeData.dark()`)
+- [x] **THM-01**: `ThemeExtension<T>` class for each token category (7 classes) with `copyWith` and `lerp` — split per category, not monolithic
+- [x] **THM-02**: `TwTheme` widget that injects all `ThemeExtension`s into `ThemeData`
+- [x] **THM-03**: `TwThemeData` resolver accessed via `context.tw` with null-safety (`maybeOf`)
+- [x] **THM-04**: Default light and dark theme presets (`TwThemeData.light()`, `TwThemeData.dark()`)
 
 ### Widget Extensions
 
@@ -64,7 +64,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **INF-01**: Package structure targeting 160/160 pub.dev points (conventions, docs, platforms, analysis, deps)
 - [x] **INF-02**: Barrel export file (`tailwind_flutter.dart`) with organized exports
 - [ ] **INF-03**: Example app in `example/` demonstrating all three tiers
-- [ ] **INF-04**: Unit tests for all token values, extension methods, theme resolution
+- [x] **INF-04**: Unit tests for all token values, extension methods, theme resolution
 - [ ] **INF-05**: Golden tests for styled widgets across light/dark themes (using Ahem font for CI stability)
 - [ ] **INF-06**: `README.md` with quick-start guide, API overview, and comparison to Tailwind CSS
 - [x] **INF-07**: `analysis_options.yaml` with `very_good_analysis` + strict mode, zero warnings
@@ -123,10 +123,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TOK-10 | Phase 2 | Complete |
 | TOK-11 | Phase 2 | Complete |
 | TOK-12 | Phase 2 | Complete |
-| THM-01 | Phase 2 | Pending |
-| THM-02 | Phase 2 | Pending |
-| THM-03 | Phase 2 | Pending |
-| THM-04 | Phase 2 | Pending |
+| THM-01 | Phase 2 | Complete |
+| THM-02 | Phase 2 | Complete |
+| THM-03 | Phase 2 | Complete |
+| THM-04 | Phase 2 | Complete |
 | EXT-01 | Phase 3 | Pending |
 | EXT-02 | Phase 3 | Pending |
 | EXT-03 | Phase 3 | Pending |
@@ -145,7 +145,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INF-01 | Phase 1 | Complete |
 | INF-02 | Phase 1 | Complete |
 | INF-03 | Phase 5 | Pending |
-| INF-04 | Phase 2 | Pending |
+| INF-04 | Phase 2 | Complete |
 | INF-05 | Phase 5 | Pending |
 | INF-06 | Phase 5 | Pending |
 | INF-07 | Phase 1 | Complete |
