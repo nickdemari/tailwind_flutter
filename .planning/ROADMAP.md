@@ -94,11 +94,12 @@ Plans:
   3. README.md contains quick-start guide, API overview, and Tailwind CSS comparison that a new user can follow to first styled widget in < 5 minutes
   4. `pana` reports 160/160 points (or documents any unavoidable deductions with justification)
   5. Dartdoc coverage >= 80% on all public APIs
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md — Example app with 3 tab pages (tokens, extensions, styles) and dark mode toggle
+- [ ] 05-02-PLAN.md — Golden tests (4 scenarios x 2 themes) + dart format fix + library dartdoc
+- [ ] 05-03-PLAN.md — README, CHANGELOG, version bump to 0.1.0, CI pana threshold ratchet
 
 ## Progress
 
@@ -111,4 +112,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 2. Token System + Theme Integration | 4/4 | Complete | 2026-03-11 |
 | 3. Widget Extensions | 2/2 | Complete    | 2026-03-11 |
 | 4. Style Composition | 0/2 | Not started | - |
-| 5. Polish + Publication | 0/2 | Not started | - |
+| 5. Polish + Publication | 0/3 | Not started | - |
