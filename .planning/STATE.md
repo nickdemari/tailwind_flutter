@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-01-PLAN.md
-last_updated: "2026-03-12T03:26:12.729Z"
-last_activity: 2026-03-12 -- Completed 04-01 style data types (TwVariant + TwStyle)
+stopped_at: Completed 04-02-PLAN.md
+last_updated: "2026-03-12T03:32:42.168Z"
+last_activity: 2026-03-12 -- Completed 04-02 style apply/resolve (TwStyle.apply + TwStyle.resolve)
 progress:
   total_phases: 5
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 10
-  completed_plans: 9
-  percent: 90
+  completed_plans: 10
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-11)
 
 **Core value:** Complete Tailwind v4 design token parity expressed as type-safe, const Dart values with a composable utility API that enhances Flutter's existing ThemeData system.
-**Current focus:** Phase 4: Style Composition
+**Current focus:** Phase 4 complete -- all phases done
 
 ## Current Position
 
-Phase: 4 of 5 (Style Composition)
-Plan: 1 of 2 in current phase (04-01 complete)
-Status: Executing Phase 4
-Last activity: 2026-03-12 -- Completed 04-01 style data types (TwVariant + TwStyle)
+Phase: 5 of 5 (All phases complete)
+Plan: All plans complete (10/10)
+Status: All phases complete
+Last activity: 2026-03-12 -- Completed 04-02 style apply/resolve (TwStyle.apply + TwStyle.resolve)
 
-Progress: [█████████░] 90%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Progress: [█████████░] 90%
 | Phase 03-widget-extensions P02 | 3min | 2 tasks | 5 files |
 | Phase 03 P02 | 3min | 2 tasks | 5 files |
 | Phase 04-style-composition P01 | 4min | 2 tasks | 5 files |
+| Phase 04-style-composition P02 | 4min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -89,6 +90,9 @@ Recent decisions affecting current work:
 - [Phase 04-01]: merge strips variants from both sides -- flat output consistent with resolve-then-apply pattern
 - [Phase 04-01]: Barrel export sorted alphabetically without tier comments per VGA directives_ordering
 - [Phase 04-01]: Deleted tw_styled_widget.dart stub -- TwStyledWidget dropped from requirements per CONTEXT.md
+- [Phase 04-02]: apply() builds from child outward: textStyle > padding > decoration > opacity > constraints > margin
+- [Phase 04-02]: Decoration consolidation: bg/borderRadius/shadows into single DecoratedBox with BoxDecoration
+- [Phase 04-02]: resolve() uses Theme.of(context).brightness, not MediaQuery
 
 ### Pending Todos
 
@@ -101,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T03:26:12.725Z
-Stopped at: Completed 04-01-PLAN.md
+Last session: 2026-03-12T03:32:42.164Z
+Stopped at: Completed 04-02-PLAN.md
 Resume file: None

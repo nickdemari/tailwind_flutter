@@ -55,9 +55,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **STY-01**: `TwStyle` immutable data class with all visual properties (padding, margin, backgroundColor, borderRadius, shadows, opacity, constraints, textStyle)
 - [x] **STY-02**: `TwStyle.merge()` for combining styles (right-side wins for conflicts)
-- [ ] **STY-03**: `TwStyle.apply(child: widget)` to render styled widget — widget tree follows CSS box model order
+- [x] **STY-03**: `TwStyle.apply(child: widget)` to render styled widget — widget tree follows CSS box model order
 - [x] **STY-04**: `TwVariant` sealed class with `dark`, `light` platform brightness variants
-- [ ] **STY-05**: `TwStyle.resolve(context)` to evaluate variant conditions and return flat style
+- [x] **STY-05**: `TwStyle.resolve(context)` to evaluate variant conditions and return flat style
 
 ### Infrastructure
 
@@ -139,9 +139,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | EXT-10 | Phase 3 | Complete |
 | STY-01 | Phase 4 | Complete |
 | STY-02 | Phase 4 | Complete |
-| STY-03 | Phase 4 | Pending |
+| STY-03 | Phase 4 | Complete |
 | STY-04 | Phase 4 | Complete |
-| STY-05 | Phase 4 | Pending |
+| STY-05 | Phase 4 | Complete |
 | INF-01 | Phase 1 | Complete |
 | INF-02 | Phase 1 | Complete |
 | INF-03 | Phase 5 | Pending |
