@@ -52,7 +52,7 @@ MaterialApp(
 ```dart
 Text('Hello, Tailwind!')
   .bold()
-  .fontSize(TwFontSizes.lg.value)
+  .fontSize(TwFontSizes.lg)
   .textColor(TwColors.blue.shade600)
   .p(TwSpacing.s4)
   .bg(TwColors.blue.shade50)
@@ -75,7 +75,7 @@ token is autocomplete-friendly in your IDE.
 |----------|-------|---------|
 | Colors | `TwColors` | `TwColors.blue.shade500` |
 | Spacing | `TwSpacing` | `TwSpacing.s4` (16.0) |
-| Font sizes | `TwFontSizes` | `TwFontSizes.lg.value` (18.0) |
+| Font sizes | `TwFontSizes` | `TwFontSizes.lg` (18px + paired line-height) |
 | Font weights | `TwFontWeights` | `TwFontWeights.semibold` |
 | Border radius | `TwRadii` | `TwRadii.lg` (8.0) |
 | Shadows | `TwShadows` | `TwShadows.md` |
@@ -119,7 +119,7 @@ Container(child: Text('Card content'))
 ```dart
 Text('Styled text')
   .bold()
-  .fontSize(TwFontSizes.xl.value)
+  .fontSize(TwFontSizes.xl)
   .textColor(TwColors.slate.shade700)
   .letterSpacing(0.5)
   .lineHeight(1.6)
@@ -190,7 +190,7 @@ tailwind_flutter:
 | `py-2` | `.py(TwSpacing.s2)` | Vertical padding |
 | `m-4` | `.m(TwSpacing.s4)` | Outer margin |
 | `rounded-lg` | `.rounded(TwRadii.lg)` | 8px border radius |
-| `text-lg` | `.fontSize(TwFontSizes.lg.value)` | 18px font size |
+| `text-lg` | `.fontSize(TwFontSizes.lg)` | 18px font size + paired line-height |
 | `font-bold` | `.bold()` | Text extension |
 | `font-semibold` | `.fontWeight(TwFontWeights.semibold)` | Text extension |
 | `shadow-md` | `.shadow(TwShadows.md)` | Widget extension |
