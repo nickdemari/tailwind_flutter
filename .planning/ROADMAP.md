@@ -78,10 +78,11 @@ Plans:
   2. Two TwStyles can be merged with right-side-wins semantics, enabling style composition patterns
   3. TwStyle.apply(child: widget) produces a correctly ordered widget tree matching CSS box model expectations
   4. TwStyle with dark/light variants resolves to the correct flat style based on platform brightness
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 04-01: TBD
+- [ ] 04-01-PLAN.md — TwVariant sealed class + TwStyle data class (construction, equality, copyWith, merge)
+- [ ] 04-02-PLAN.md — TwStyle.apply() + TwStyle.resolve() + barrel export cleanup + stub deletion
 
 ### Phase 5: Polish + Publication
 **Goal**: The package achieves 160/160 pub.dev points with a polished example app, comprehensive golden tests, and documentation that makes adoption effortless
@@ -108,6 +109,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 2/2 | Complete    | 2026-03-11 |
 | 2. Token System + Theme Integration | 4/4 | Complete | 2026-03-11 |
-| 3. Widget Extensions | 1/2 | Complete    | 2026-03-11 |
-| 4. Style Composition | 0/1 | Not started | - |
+| 3. Widget Extensions | 2/2 | Complete    | 2026-03-11 |
+| 4. Style Composition | 0/2 | Not started | - |
 | 5. Polish + Publication | 0/2 | Not started | - |
