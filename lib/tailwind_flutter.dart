@@ -1,7 +1,9 @@
-// Package entry point for tailwind_flutter.
-//
-// Tailwind CSS design tokens and utility-first styling API for Flutter.
-// Exports are organized by tier and uncommented as each module is implemented.
+/// Tailwind CSS design tokens and utility-first styling API for Flutter.
+///
+/// Provides a complete set of Tailwind CSS v4 design tokens (colors, spacing,
+/// typography, shadows, radii, opacity, breakpoints) as type-safe Dart
+/// constants, plus composable widget extensions and a style composition system.
+library tailwind_flutter;
 
 export 'src/extensions/text_extensions.dart';
 export 'src/extensions/widget_extensions.dart';

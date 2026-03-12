@@ -324,8 +324,7 @@ extension TwWidgetExtensions on Widget {
   /// ```dart
   /// widget.align(Alignment.topLeft)
   /// ```
-  Widget align(Alignment alignment) =>
-      Align(alignment: alignment, child: this);
+  Widget align(Alignment alignment) => Align(alignment: alignment, child: this);
 
   // ---------------------------------------------------------------------------
   // Clip (EXT-09)

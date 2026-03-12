@@ -12,20 +12,19 @@ import 'package:flutter/widgets.dart';
 /// This is an extension type wrapping a named-field record of 11 [Color]
 /// values, providing zero-cost abstraction at runtime.
 extension type const TwColorFamily._(
-  ({
-    Color shade50,
-    Color shade100,
-    Color shade200,
-    Color shade300,
-    Color shade400,
-    Color shade500,
-    Color shade600,
-    Color shade700,
-    Color shade800,
-    Color shade900,
-    Color shade950,
-  }) _
-) {
+    ({
+      Color shade50,
+      Color shade100,
+      Color shade200,
+      Color shade300,
+      Color shade400,
+      Color shade500,
+      Color shade600,
+      Color shade700,
+      Color shade800,
+      Color shade900,
+      Color shade950,
+    }) _) {
   /// Creates a [TwColorFamily] with all 11 shade values.
   const TwColorFamily({
     required Color shade50,
@@ -39,19 +38,21 @@ extension type const TwColorFamily._(
     required Color shade800,
     required Color shade900,
     required Color shade950,
-  }) : this._((
-         shade50: shade50,
-         shade100: shade100,
-         shade200: shade200,
-         shade300: shade300,
-         shade400: shade400,
-         shade500: shade500,
-         shade600: shade600,
-         shade700: shade700,
-         shade800: shade800,
-         shade900: shade900,
-         shade950: shade950,
-       ),);
+  }) : this._(
+          (
+            shade50: shade50,
+            shade100: shade100,
+            shade200: shade200,
+            shade300: shade300,
+            shade400: shade400,
+            shade500: shade500,
+            shade600: shade600,
+            shade700: shade700,
+            shade800: shade800,
+            shade900: shade900,
+            shade950: shade950,
+          ),
+        );
 
   /// The lightest shade (50).
   Color get shade50 => _.shade50;
