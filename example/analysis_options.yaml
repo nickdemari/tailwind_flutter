@@ -1,0 +1,16 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    # Example app StatefulWidgets manage mutable state -- const constructors
+    # aren't always viable in top-level app scaffolds.
+    prefer_const_constructors: false
+    prefer_const_literals_to_create_immutables: false
+    # Example code prioritizes clarity over minimal API surface.
+    public_member_api_docs: false
