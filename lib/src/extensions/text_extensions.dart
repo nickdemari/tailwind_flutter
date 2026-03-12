@@ -12,7 +12,7 @@
 /// // Correct: text extensions first, then widget extensions
 /// Text('Hello')
 ///   .bold()
-///   .fontSize(18)
+///   .fontSize(TwFontSizes.base)
 ///   .textColor(TwColors.blue.shade500)
 ///   .p(TwSpacing.s4)    // widget extension -- returns Widget
 ///   .bg(TwColors.gray.shade100);
@@ -28,6 +28,7 @@
 library;
 
 import 'package:flutter/widgets.dart';
+import 'package:tailwind_flutter/src/tokens/typography.dart';
 
 /// Tailwind-style text styling extensions on [Text].
 ///
@@ -54,14 +55,34 @@ extension TwTextExtensions on Text {
             (style ?? const TextStyle()).copyWith(fontStyle: FontStyle.italic),
       );
 
-  /// Sets the font size in logical pixels.
+  /// Sets the font size.
+  ///
+  /// Accepts a [num] (raw pixel value) or a [TwFontSize] token.
+  /// When a [TwFontSize] is passed, the paired line-height is also applied
+  /// automatically — matching Tailwind's convention where each size class
+  /// implies a specific line-height.
   ///
   /// ```dart
-  /// Text('Hello').fontSize(18)
+  /// Text('Hello').fontSize(18)              // raw double — sets fontSize only
+  /// Text('Hello').fontSize(TwFontSizes.lg)  // token — sets fontSize + lineHeight
   /// ```
-  Text fontSize(double size) => _copyWith(
-        style: (style ?? const TextStyle()).copyWith(fontSize: size),
-      );
+  ///
+  /// To override the auto-applied line-height, chain [lineHeight] after:
+  /// ```dart
+  /// Text('Hello').fontSize(TwFontSizes.lg).lineHeight(2.0)
+  /// ```
+  Text fontSize(dynamic size) {
+    final base = style ?? const TextStyle();
+    return switch (size) {
+      final TwFontSize s => _copyWith(
+          style: base.copyWith(fontSize: s.value, height: s.lineHeight),
+        ),
+      final num n => _copyWith(style: base.copyWith(fontSize: n.toDouble())),
+      _ => throw ArgumentError(
+          'fontSize expects num or TwFontSize, got ${size.runtimeType}',
+        ),
+    };
+  }
 
   /// Sets the text color.
   ///

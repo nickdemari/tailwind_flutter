@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tailwind_flutter/src/extensions/text_extensions.dart';
+import 'package:tailwind_flutter/src/tokens/typography.dart';
 
 void main() {
   group('TwTextExtensions', () {
@@ -30,6 +31,29 @@ void main() {
         final text = tester.widget<Text>(find.byType(Text));
         expect(text.style?.fontSize, 18);
         expect(text.data, 'Hello');
+      });
+
+      testWidgets('.fontSize(TwFontSize) sets fontSize and lineHeight',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').fontSize(TwFontSizes.lg)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 18);
+        expect(text.style?.height, closeTo(1.5556, 0.001));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.fontSize(TwFontSize) lineHeight can be overridden',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Text('Hello').fontSize(TwFontSizes.lg).lineHeight(2.0),
+          ),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 18);
+        expect(text.style?.height, 2.0);
       });
 
       testWidgets('.textColor(Colors.red) sets color to red', (tester) async {
