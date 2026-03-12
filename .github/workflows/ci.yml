@@ -63,4 +63,4 @@ jobs:
           cache: true
       - run: flutter pub get
       - run: dart pub global activate pana
-      - run: dart pub global run pana --no-warning --exit-code-threshold 120
+      - run: dart pub global run pana --no-warning --exit-code-threshold 0
