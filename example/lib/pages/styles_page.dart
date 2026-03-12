@@ -18,18 +18,18 @@ class StylesPage extends StatelessWidget {
         children: [
           Text('Composable Styles')
               .bold()
-              .fontSize(TwFontSizes.xl.value)
+              .fontSize(TwFontSizes.xl)
               .textColor(fg)
               .pb(TwSpacing.s1),
           Text('Define reusable styles, merge overrides, resolve variants.')
-              .fontSize(TwFontSizes.sm.value)
+              .fontSize(TwFontSizes.sm)
               .textColor(muted)
               .pb(TwSpacing.s6),
 
           // -- Base card --
           Text('Base Card Style')
               .bold()
-              .fontSize(TwFontSizes.base.value)
+              .fontSize(TwFontSizes.base)
               .textColor(fg)
               .pb(TwSpacing.s2),
           _BaseCardDemo(isDark: isDark),
@@ -39,7 +39,7 @@ class StylesPage extends StatelessWidget {
           // -- Merged card --
           Text('Merged Style (base + accent)')
               .bold()
-              .fontSize(TwFontSizes.base.value)
+              .fontSize(TwFontSizes.base)
               .textColor(fg)
               .pb(TwSpacing.s2),
           _MergedCardDemo(isDark: isDark),
@@ -49,11 +49,11 @@ class StylesPage extends StatelessWidget {
           // -- Variant card --
           Text('Dark Variant Resolution')
               .bold()
-              .fontSize(TwFontSizes.base.value)
+              .fontSize(TwFontSizes.base)
               .textColor(fg)
               .pb(TwSpacing.s1),
           Text('Toggle dark mode to see the variant resolve.')
-              .fontSize(TwFontSizes.xs.value)
+              .fontSize(TwFontSizes.xs)
               .textColor(muted)
               .pb(TwSpacing.s2),
           _VariantCardDemo(isDark: isDark),
@@ -185,11 +185,11 @@ Widget _profileCardContent({
           children: [
             Text('Jane Developer')
                 .bold()
-                .fontSize(TwFontSizes.lg.value)
+                .fontSize(TwFontSizes.lg)
                 .textColor(fg),
             SizedBox(height: TwSpacing.s1),
             Text('Flutter engineer who ships with style.')
-                .fontSize(TwFontSizes.sm.value)
+                .fontSize(TwFontSizes.sm)
                 .textColor(muted),
           ],
         ),

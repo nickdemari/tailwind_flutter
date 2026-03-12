@@ -18,11 +18,11 @@ class ExtensionsPage extends StatelessWidget {
         children: [
           Text('Widget Extensions')
               .bold()
-              .fontSize(TwFontSizes.xl.value)
+              .fontSize(TwFontSizes.xl)
               .textColor(fg)
               .pb(TwSpacing.s1),
           Text('Same visual result, dramatically less boilerplate.')
-              .fontSize(TwFontSizes.sm.value)
+              .fontSize(TwFontSizes.sm)
               .textColor(muted)
               .pb(TwSpacing.s6),
 
@@ -116,7 +116,7 @@ class ExtensionsPage extends StatelessWidget {
   Widget _twStyledText() {
     return Text('tailwind_flutter')
         .bold()
-        .fontSize(TwFontSizes.xl.value)
+        .fontSize(TwFontSizes.xl)
         .textColor(TwColors.pink.shade700)
         .p(TwSpacing.s4);
   }
@@ -189,10 +189,10 @@ class _ComparisonCard extends StatelessWidget {
       children: [
         Text(title)
             .bold()
-            .fontSize(TwFontSizes.base.value)
+            .fontSize(TwFontSizes.base)
             .textColor(fg),
         Text(subtitle)
-            .fontSize(TwFontSizes.xs.value)
+            .fontSize(TwFontSizes.xs)
             .textColor(muted)
             .pb(TwSpacing.s3),
         Row(
@@ -202,7 +202,7 @@ class _ComparisonCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text('Raw Flutter')
-                      .fontSize(TwFontSizes.xs.value)
+                      .fontSize(TwFontSizes.xs)
                       .fontWeight(TwFontWeights.semibold)
                       .textColor(TwColors.red.shade500)
                       .p(TwSpacing.s1)
@@ -218,7 +218,7 @@ class _ComparisonCard extends StatelessWidget {
               child: Column(
                 children: [
                   Text('tailwind_flutter')
-                      .fontSize(TwFontSizes.xs.value)
+                      .fontSize(TwFontSizes.xs)
                       .fontWeight(TwFontWeights.semibold)
                       .textColor(TwColors.emerald.shade500)
                       .p(TwSpacing.s1)

@@ -79,14 +79,14 @@ class TokensPage extends StatelessWidget {
 Widget _sectionTitle(String text, {required bool isDark}) {
   return Text(text)
       .bold()
-      .fontSize(TwFontSizes.xl.value)
+      .fontSize(TwFontSizes.xl)
       .textColor(isDark ? TwColors.white : TwColors.slate.shade900)
       .pb(TwSpacing.s2);
 }
 
 Widget _sectionSubtitle(String text, {required bool isDark}) {
   return Text(text)
-      .fontSize(TwFontSizes.sm.value)
+      .fontSize(TwFontSizes.sm)
       .textColor(isDark ? TwColors.zinc.shade400 : TwColors.slate.shade500)
       .pb(TwSpacing.s4);
 }
@@ -122,7 +122,7 @@ class _ColorFamilyRow extends StatelessWidget {
         SizedBox(
           width: 64,
           child: Text(name)
-              .fontSize(TwFontSizes.xs.value)
+              .fontSize(TwFontSizes.xs)
               .fontWeight(TwFontWeights.medium),
         ),
         ...shades.map(
@@ -161,7 +161,7 @@ class _SpacingSamples extends StatelessWidget {
           children: [
             SizedBox(
               width: 80,
-              child: Text(entry.key).fontSize(TwFontSizes.xs.value),
+              child: Text(entry.key).fontSize(TwFontSizes.xs),
             ),
             Container(
               width: entry.value.toDouble(),
