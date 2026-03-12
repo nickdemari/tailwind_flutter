@@ -4,7 +4,6 @@ library;
 ///
 /// Covers construction, equality, copyWith, and merge.
 
-import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tailwind_flutter/tailwind_flutter.dart';
