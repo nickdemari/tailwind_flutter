@@ -2,9 +2,9 @@ library;
 
 /// Tests for [TwStyle] immutable data class.
 ///
-/// Covers construction, equality, copyWith, and merge.
+/// Covers construction, equality, copyWith, merge, apply, and resolve.
 
-import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tailwind_flutter/tailwind_flutter.dart';
 
@@ -244,6 +244,497 @@ void main() {
         final merged = base.merge(other);
         expect(merged.variants, isNull);
       });
+    });
+
+    group('apply', () {
+      testWidgets(
+        'all properties set produces correct widget tree order',
+        (tester) async {
+          final style = TwStyle(
+            margin: const EdgeInsets.all(16),
+            constraints: const BoxConstraints(maxWidth: 200),
+            opacity: 0.8,
+            backgroundColor: const Color(0xFFFF0000),
+            borderRadius: BorderRadius.circular(8),
+            shadows: const [BoxShadow(blurRadius: 4)],
+            padding: const EdgeInsets.all(8),
+            textStyle: const TextStyle(fontSize: 14),
+          );
+
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          // Outermost: margin Padding
+          final marginPadding = tester.widget<Padding>(
+            find.ancestor(
+              of: find.byType(ConstrainedBox),
+              matching: find.byType(Padding),
+            ).first,
+          );
+          expect(marginPadding.padding, const EdgeInsets.all(16));
+
+          // ConstrainedBox
+          final constrained = tester.widget<ConstrainedBox>(
+            find.byType(ConstrainedBox),
+          );
+          expect(
+            constrained.constraints,
+            const BoxConstraints(maxWidth: 200),
+          );
+
+          // Opacity
+          final opacity = tester.widget<Opacity>(find.byType(Opacity));
+          expect(opacity.opacity, 0.8);
+
+          // DecoratedBox with all three decoration props
+          final decoratedBox = tester.widget<DecoratedBox>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(DecoratedBox),
+            ).first,
+          );
+          final decoration = decoratedBox.decoration as BoxDecoration;
+          expect(decoration.color, const Color(0xFFFF0000));
+          expect(decoration.borderRadius, BorderRadius.circular(8));
+          expect(decoration.boxShadow, const [BoxShadow(blurRadius: 4)]);
+
+          // Inner Padding
+          final innerPadding = tester.widget<Padding>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(Padding),
+            ).first,
+          );
+          expect(innerPadding.padding, const EdgeInsets.all(8));
+
+          // DefaultTextStyle wrapping the child
+          final textWidget = tester.widget<DefaultTextStyle>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(DefaultTextStyle),
+            ).first,
+          );
+          expect(textWidget.style.fontSize, 14);
+        },
+      );
+
+      testWidgets(
+        'only padding wraps child in single Padding widget',
+        (tester) async {
+          const style = TwStyle(padding: EdgeInsets.all(12));
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          // Should find Padding wrapping the child
+          final padding = tester.widget<Padding>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(Padding),
+            ).first,
+          );
+          expect(padding.padding, const EdgeInsets.all(12));
+
+          // Should NOT find DecoratedBox, Opacity, ConstrainedBox
+          // (skipping MaterialApp internals -- check only our ancestors)
+          expect(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(Opacity),
+            ),
+            findsNothing,
+          );
+          expect(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(ConstrainedBox),
+            ),
+            findsNothing,
+          );
+        },
+      );
+
+      testWidgets(
+        'only backgroundColor wraps child in DecoratedBox',
+        (tester) async {
+          const style = TwStyle(backgroundColor: Color(0xFF00FF00));
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          final decoratedBox = tester.widget<DecoratedBox>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(DecoratedBox),
+            ).first,
+          );
+          final decoration = decoratedBox.decoration as BoxDecoration;
+          expect(decoration.color, const Color(0xFF00FF00));
+        },
+      );
+
+      testWidgets(
+        'bg + borderRadius + shadows produce single DecoratedBox',
+        (tester) async {
+          final style = TwStyle(
+            backgroundColor: const Color(0xFF0000FF),
+            borderRadius: BorderRadius.circular(12),
+            shadows: const [BoxShadow(blurRadius: 6, color: Color(0x33000000))],
+          );
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          // Only one DecoratedBox wrapping the child
+          final decoratedBoxes = find.ancestor(
+            of: find.byKey(const Key('child')),
+            matching: find.byType(DecoratedBox),
+          );
+          expect(decoratedBoxes, findsOneWidget);
+
+          final decoration = (tester.widget<DecoratedBox>(decoratedBoxes.first)
+                  .decoration) as BoxDecoration;
+          expect(decoration.color, const Color(0xFF0000FF));
+          expect(decoration.borderRadius, BorderRadius.circular(12));
+          expect(
+            decoration.boxShadow,
+            const [BoxShadow(blurRadius: 6, color: Color(0x33000000))],
+          );
+        },
+      );
+
+      testWidgets(
+        'empty style (all null) returns child unchanged',
+        (tester) async {
+          const style = TwStyle();
+          final child = const SizedBox(key: Key('child'));
+          final result = style.apply(child: child);
+          // Should be the exact same widget instance
+          expect(identical(result, child), isTrue);
+        },
+      );
+
+      testWidgets(
+        'skips Opacity widget when opacity is null',
+        (tester) async {
+          const style = TwStyle(padding: EdgeInsets.all(8));
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          expect(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(Opacity),
+            ),
+            findsNothing,
+          );
+        },
+      );
+
+      testWidgets(
+        'skips ConstrainedBox when constraints is null',
+        (tester) async {
+          const style = TwStyle(padding: EdgeInsets.all(8));
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          expect(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(ConstrainedBox),
+            ),
+            findsNothing,
+          );
+        },
+      );
+
+      testWidgets(
+        'skips margin Padding when margin is null',
+        (tester) async {
+          const style = TwStyle(padding: EdgeInsets.all(8));
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          // Only one Padding (inner), not two
+          final paddings = find.ancestor(
+            of: find.byKey(const Key('child')),
+            matching: find.byType(Padding),
+          );
+          expect(paddings, findsOneWidget);
+        },
+      );
+
+      testWidgets(
+        'textStyle uses DefaultTextStyle.merge (inherits, not replaces)',
+        (tester) async {
+          const style = TwStyle(textStyle: TextStyle(fontSize: 20));
+          final child = const Text('hello', key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(
+              home: DefaultTextStyle(
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF000000),
+                ),
+                child: style.apply(child: child),
+              ),
+            ),
+          );
+
+          // The DefaultTextStyle created by apply() should merge with
+          // the parent, so both fontSize and fontWeight should be present.
+          final defaultTextStyle = tester.widget<DefaultTextStyle>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(DefaultTextStyle),
+            ).first,
+          );
+          expect(defaultTextStyle.style.fontSize, 20);
+          // fontWeight should be inherited from the parent.
+          expect(defaultTextStyle.style.fontWeight, FontWeight.bold);
+        },
+      );
+
+      testWidgets(
+        'style with unresolved variants uses base properties only',
+        (tester) async {
+          const style = TwStyle(
+            padding: EdgeInsets.all(8),
+            backgroundColor: Color(0xFFFFFFFF),
+            variants: {
+              TwVariant.dark: TwStyle(
+                backgroundColor: Color(0xFF000000),
+                padding: EdgeInsets.all(16),
+              ),
+            },
+          );
+          final child = const SizedBox(key: Key('child'));
+          await tester.pumpWidget(
+            MaterialApp(home: style.apply(child: child)),
+          );
+
+          // Should use base backgroundColor (white), not dark variant (black)
+          final decoratedBox = tester.widget<DecoratedBox>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(DecoratedBox),
+            ).first,
+          );
+          final decoration = decoratedBox.decoration as BoxDecoration;
+          expect(decoration.color, const Color(0xFFFFFFFF));
+
+          // Should use base padding (8), not dark variant (16)
+          final padding = tester.widget<Padding>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
+              matching: find.byType(Padding),
+            ).first,
+          );
+          expect(padding.padding, const EdgeInsets.all(8));
+        },
+      );
+    });
+
+    group('resolve', () {
+      testWidgets(
+        'in dark mode returns base merged with dark variant',
+        (tester) async {
+          const style = TwStyle(
+            backgroundColor: Color(0xFFFFFFFF),
+            padding: EdgeInsets.all(8),
+            variants: {
+              TwVariant.dark: TwStyle(
+                backgroundColor: Color(0xFF000000),
+              ),
+            },
+          );
+
+          late TwStyle resolved;
+          await tester.pumpWidget(
+            MaterialApp(
+              theme: ThemeData(brightness: Brightness.dark),
+              home: Builder(
+                builder: (context) {
+                  resolved = style.resolve(context);
+                  return const SizedBox();
+                },
+              ),
+            ),
+          );
+
+          // Dark variant overrides backgroundColor
+          expect(resolved.backgroundColor, const Color(0xFF000000));
+          // Base padding preserved (dark variant has null padding)
+          expect(resolved.padding, const EdgeInsets.all(8));
+        },
+      );
+
+      testWidgets(
+        'in light mode returns base merged with light variant',
+        (tester) async {
+          const style = TwStyle(
+            backgroundColor: Color(0xFF000000),
+            padding: EdgeInsets.all(8),
+            variants: {
+              TwVariant.light: TwStyle(
+                backgroundColor: Color(0xFFFFFFFF),
+              ),
+            },
+          );
+
+          late TwStyle resolved;
+          await tester.pumpWidget(
+            MaterialApp(
+              theme: ThemeData(brightness: Brightness.light),
+              home: Builder(
+                builder: (context) {
+                  resolved = style.resolve(context);
+                  return const SizedBox();
+                },
+              ),
+            ),
+          );
+
+          expect(resolved.backgroundColor, const Color(0xFFFFFFFF));
+          expect(resolved.padding, const EdgeInsets.all(8));
+        },
+      );
+
+      testWidgets(
+        'returns base without variants when no variant matches',
+        (tester) async {
+          const style = TwStyle(
+            backgroundColor: Color(0xFFFFFFFF),
+            padding: EdgeInsets.all(8),
+            variants: {
+              TwVariant.dark: TwStyle(
+                backgroundColor: Color(0xFF000000),
+              ),
+            },
+          );
+
+          late TwStyle resolved;
+          await tester.pumpWidget(
+            MaterialApp(
+              theme: ThemeData(brightness: Brightness.light),
+              home: Builder(
+                builder: (context) {
+                  resolved = style.resolve(context);
+                  return const SizedBox();
+                },
+              ),
+            ),
+          );
+
+          // Base properties preserved, no dark override applied
+          expect(resolved.backgroundColor, const Color(0xFFFFFFFF));
+          expect(resolved.padding, const EdgeInsets.all(8));
+        },
+      );
+
+      testWidgets(
+        'with no variants map returns self (no-op)',
+        (tester) async {
+          const style = TwStyle(
+            backgroundColor: Color(0xFFAAAAAA),
+            padding: EdgeInsets.all(4),
+          );
+
+          late TwStyle resolved;
+          await tester.pumpWidget(
+            MaterialApp(
+              home: Builder(
+                builder: (context) {
+                  resolved = style.resolve(context);
+                  return const SizedBox();
+                },
+              ),
+            ),
+          );
+
+          // Should return self when no variants
+          expect(identical(resolved, style), isTrue);
+        },
+      );
+
+      testWidgets(
+        'resolved style has no variants (variants stripped)',
+        (tester) async {
+          const style = TwStyle(
+            backgroundColor: Color(0xFFFFFFFF),
+            variants: {
+              TwVariant.dark: TwStyle(backgroundColor: Color(0xFF000000)),
+            },
+          );
+
+          late TwStyle resolved;
+          await tester.pumpWidget(
+            MaterialApp(
+              theme: ThemeData(brightness: Brightness.dark),
+              home: Builder(
+                builder: (context) {
+                  resolved = style.resolve(context);
+                  return const SizedBox();
+                },
+              ),
+            ),
+          );
+
+          expect(resolved.variants, isNull);
+        },
+      );
+
+      testWidgets(
+        'merges variant over base (variant overrides, base fills gaps)',
+        (tester) async {
+          const style = TwStyle(
+            backgroundColor: Color(0xFFFFFFFF),
+            padding: EdgeInsets.all(8),
+            opacity: 0.9,
+            textStyle: TextStyle(fontSize: 16),
+            variants: {
+              TwVariant.dark: TwStyle(
+                backgroundColor: Color(0xFF111111),
+                opacity: 0.7,
+                // padding and textStyle are null in variant -- base values kept
+              ),
+            },
+          );
+
+          late TwStyle resolved;
+          await tester.pumpWidget(
+            MaterialApp(
+              theme: ThemeData(brightness: Brightness.dark),
+              home: Builder(
+                builder: (context) {
+                  resolved = style.resolve(context);
+                  return const SizedBox();
+                },
+              ),
+            ),
+          );
+
+          // Variant overrides
+          expect(resolved.backgroundColor, const Color(0xFF111111));
+          expect(resolved.opacity, 0.7);
+          // Base fills gaps
+          expect(resolved.padding, const EdgeInsets.all(8));
+          expect(resolved.textStyle, const TextStyle(fontSize: 16));
+          // No variants in resolved style
+          expect(resolved.variants, isNull);
+        },
+      );
     });
   });
 }
