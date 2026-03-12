@@ -1,0 +1,20 @@
+# Dart/Flutter
+.dart_tool/
+.packages
+.pub/
+build/
+coverage/
+
+# Generated docs
+doc/api/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
