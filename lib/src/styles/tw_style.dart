@@ -22,7 +22,7 @@ library;
 /// ```
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
 import 'package:tailwind_flutter/src/styles/tw_variant.dart';
 
 /// An immutable set of visual properties for composable styling.
@@ -171,6 +171,107 @@ class TwStyle {
       constraints: other.constraints ?? constraints,
       textStyle: other.textStyle ?? textStyle,
       // Variants are NOT merged -- merge produces a flat style.
+    );
+  }
+
+  /// Builds a widget tree from this style's non-null properties.
+  ///
+  /// The tree follows CSS box model order (outermost to innermost):
+  /// **margin > constraints > opacity > decoration > padding >
+  /// textStyle > child**
+  ///
+  /// Properties that are `null` are skipped -- no unnecessary wrapper widgets
+  /// are inserted. [backgroundColor], [borderRadius], and [shadows] are
+  /// consolidated into a single [DecoratedBox] with a [BoxDecoration].
+  ///
+  /// If this style has unresolved [variants], they are ignored. Call
+  /// [resolve] first to select the correct variant for the current context.
+  ///
+  /// ```dart
+  /// // Canonical two-step pattern:
+  /// style.resolve(context).apply(child: myWidget)
+  /// ```
+  Widget apply({required Widget child}) {
+    var current = child;
+
+    // 1. textStyle (innermost)
+    if (textStyle != null) {
+      current = DefaultTextStyle.merge(style: textStyle!, child: current);
+    }
+
+    // 2. padding
+    if (padding != null) {
+      current = Padding(padding: padding!, child: current);
+    }
+
+    // 3. decoration (bg + borderRadius + shadows consolidated)
+    if (backgroundColor != null || borderRadius != null || shadows != null) {
+      current = DecoratedBox(
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: borderRadius,
+          boxShadow: shadows,
+        ),
+        child: current,
+      );
+    }
+
+    // 4. opacity
+    if (opacity != null) {
+      current = Opacity(opacity: opacity!, child: current);
+    }
+
+    // 5. constraints
+    if (constraints != null) {
+      current = ConstrainedBox(constraints: constraints!, child: current);
+    }
+
+    // 6. margin (outermost)
+    if (margin != null) {
+      current = Padding(padding: margin!, child: current);
+    }
+
+    return current;
+  }
+
+  /// Resolves brightness-conditional [variants] against the current context.
+  ///
+  /// Reads `Theme.of(context).brightness` and finds the first variant whose
+  /// condition [TwVariant.matches] returns `true`. The matching variant's
+  /// properties are merged over the base style (right-side-wins). The
+  /// returned style has no [variants] -- it is fully resolved.
+  ///
+  /// If [variants] is `null` or empty, returns `this` unchanged (no-op).
+  /// If no variant matches, returns the base style with [variants] stripped.
+  ///
+  /// ```dart
+  /// // Resolve, then apply:
+  /// final widget = style.resolve(context).apply(child: child);
+  /// ```
+  TwStyle resolve(BuildContext context) {
+    if (variants == null) return this;
+    if (variants!.isEmpty) return _withoutVariants();
+
+    final brightness = Theme.of(context).brightness;
+    for (final entry in variants!.entries) {
+      if (entry.key.matches(brightness)) {
+        return _withoutVariants().merge(entry.value);
+      }
+    }
+    return _withoutVariants();
+  }
+
+  /// Returns a copy of this style with [variants] set to `null`.
+  TwStyle _withoutVariants() {
+    return TwStyle(
+      padding: padding,
+      margin: margin,
+      backgroundColor: backgroundColor,
+      borderRadius: borderRadius,
+      shadows: shadows,
+      opacity: opacity,
+      constraints: constraints,
+      textStyle: textStyle,
     );
   }
 

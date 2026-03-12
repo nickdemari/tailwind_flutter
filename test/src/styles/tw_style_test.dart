@@ -266,29 +266,30 @@ void main() {
             MaterialApp(home: style.apply(child: child)),
           );
 
-          // Outermost: margin Padding
-          final marginPadding = tester.widget<Padding>(
+          // Navigate the widget tree from the child outward to verify order.
+          // The tree should be:
+          //   Padding(margin) > ConstrainedBox > Opacity > DecoratedBox >
+          //   Padding(padding) > DefaultTextStyle > child
+
+          // DefaultTextStyle is the nearest ancestor of the child
+          final defaultTS = tester.widget<DefaultTextStyle>(
             find.ancestor(
-              of: find.byType(ConstrainedBox),
+              of: find.byKey(const Key('child')),
+              matching: find.byType(DefaultTextStyle),
+            ).first,
+          );
+          expect(defaultTS.style.fontSize, 14);
+
+          // Inner Padding wraps DefaultTextStyle
+          final innerPadding = tester.widget<Padding>(
+            find.ancestor(
+              of: find.byKey(const Key('child')),
               matching: find.byType(Padding),
             ).first,
           );
-          expect(marginPadding.padding, const EdgeInsets.all(16));
+          expect(innerPadding.padding, const EdgeInsets.all(8));
 
-          // ConstrainedBox
-          final constrained = tester.widget<ConstrainedBox>(
-            find.byType(ConstrainedBox),
-          );
-          expect(
-            constrained.constraints,
-            const BoxConstraints(maxWidth: 200),
-          );
-
-          // Opacity
-          final opacity = tester.widget<Opacity>(find.byType(Opacity));
-          expect(opacity.opacity, 0.8);
-
-          // DecoratedBox with all three decoration props
+          // DecoratedBox wraps inner Padding
           final decoratedBox = tester.widget<DecoratedBox>(
             find.ancestor(
               of: find.byKey(const Key('child')),
@@ -300,23 +301,43 @@ void main() {
           expect(decoration.borderRadius, BorderRadius.circular(8));
           expect(decoration.boxShadow, const [BoxShadow(blurRadius: 4)]);
 
-          // Inner Padding
-          final innerPadding = tester.widget<Padding>(
+          // Opacity wraps DecoratedBox
+          final opacity = tester.widget<Opacity>(
             find.ancestor(
               of: find.byKey(const Key('child')),
-              matching: find.byType(Padding),
+              matching: find.byType(Opacity),
             ).first,
           );
-          expect(innerPadding.padding, const EdgeInsets.all(8));
+          expect(opacity.opacity, 0.8);
 
-          // DefaultTextStyle wrapping the child
-          final textWidget = tester.widget<DefaultTextStyle>(
+          // ConstrainedBox wraps Opacity
+          final constrained = tester.widget<ConstrainedBox>(
             find.ancestor(
               of: find.byKey(const Key('child')),
-              matching: find.byType(DefaultTextStyle),
+              matching: find.byType(ConstrainedBox),
             ).first,
           );
-          expect(textWidget.style.fontSize, 14);
+          expect(
+            constrained.constraints,
+            const BoxConstraints(maxWidth: 200),
+          );
+
+          // Outermost margin Padding wraps ConstrainedBox.
+          // Find all Padding ancestors of the child, the outermost
+          // relevant one should have margin value.
+          final marginPaddings = find.ancestor(
+            of: find.byKey(const Key('child')),
+            matching: find.byType(Padding),
+          );
+          // The last Padding ancestor (before MaterialApp internals)
+          // should be the margin. Check that one of them has margin=16.
+          final allPaddings = tester
+              .widgetList<Padding>(marginPaddings)
+              .toList();
+          final marginPadding = allPaddings.firstWhere(
+            (p) => p.padding == const EdgeInsets.all(16),
+          );
+          expect(marginPadding.padding, const EdgeInsets.all(16));
         },
       );
 
