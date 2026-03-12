@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 05-03-PLAN.md
-last_updated: "2026-03-12T15:05:37.477Z"
-last_activity: 2026-03-12 -- Completed 05-03 README, CHANGELOG, version bump, CI pana ratchet
+status: completed
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-12T15:08:34.964Z"
+last_activity: 2026-03-12 -- Completed 05-01 example app with 3 tab pages and dark mode toggle
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 13
-  completed_plans: 11
-  percent: 85
+  completed_plans: 13
+  percent: 100
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-11)
 ## Current Position
 
 Phase: 5 of 5
-Plan: 3 of 3 in phase (11/13 total)
-Status: Executing Phase 5
-Last activity: 2026-03-12 -- Completed 05-03 README, CHANGELOG, version bump, CI pana ratchet
+Plan: 3 of 3 in phase (13/13 total)
+Status: All phases complete
+Last activity: 2026-03-12 -- Completed 05-01 example app with 3 tab pages and dark mode toggle
 
-Progress: [█████████░] 85%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -60,6 +60,9 @@ Progress: [█████████░] 85%
 | Phase 04-style-composition P01 | 4min | 2 tasks | 5 files |
 | Phase 04-style-composition P02 | 4min | 2 tasks | 2 files |
 | Phase 05-polish-publication P03 | 3min | 2 tasks | 4 files |
+| Phase 05-polish-publication P01 | 5min | 2 tasks | 6 files |
+| Phase 05-polish-publication P02 | 6 | 2 tasks | 10 files |
+| Phase 05-polish-publication P01 | 5min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -96,6 +99,14 @@ Recent decisions affecting current work:
 - [Phase 04-02]: resolve() uses Theme.of(context).brightness, not MediaQuery
 - [Phase 05-03]: README structured as marketing doc: badges, 3-step quick-start, 3-tier API overview, 14-row Tailwind comparison table
 - [Phase 05-03]: CI pana threshold ratcheted from 120 to 0 (enforces 160/160 on every commit)
+- [Phase 05-01]: VGA added as example dev_dependency (not transitively available from parent)
+- [Phase 05-01]: Package imports used throughout example per VGA always_use_package_imports rule
+- [Phase 05-01]: Stubs created in Task 1 then replaced in Task 2 for clean incremental commits
+- [Phase 05-02]: Golden tests use Flutter built-in matchesGoldenFile with no external deps (alchemist dropped)
+- [Phase 05-02]: Golden widgets use Ahem font only and fixed 300x200 SizedBox for CI stability
+- [Phase 05-01]: VGA added as example dev_dependency (not transitively available from parent)
+- [Phase 05-01]: Package imports used throughout example per VGA always_use_package_imports rule
+- [Phase 05-01]: Stubs created in Task 1 then replaced in Task 2 for clean incremental commits
 
 ### Pending Todos
 
@@ -108,6 +119,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T15:05:37.470Z
-Stopped at: Completed 05-03-PLAN.md
+Last session: 2026-03-12T15:08:19.038Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None

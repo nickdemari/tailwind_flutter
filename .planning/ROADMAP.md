@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Token System + Theme Integration** - All 7 token categories as const Dart values with extension types, plus ThemeExtension classes, TwTheme widget, and context.tw resolver (completed 2026-03-11)
 - [x] **Phase 3: Widget Extensions** - Padding, margin, background, radius, opacity, shadow, sizing, alignment, clip, and text-specific chaining extensions on Widget/Text (completed 2026-03-11)
 - [ ] **Phase 4: Style Composition** - TwStyle immutable class with merge, resolve, and apply — the composable styling tier that ties everything together
-- [ ] **Phase 5: Polish + Publication** - Example app, golden tests, README, CHANGELOG, dartdoc coverage audit, and pana score verification for 160/160 pub.dev points
+- [x] **Phase 5: Polish + Publication** - Example app, golden tests, README, CHANGELOG, dartdoc coverage audit, and pana score verification for 160/160 pub.dev points (completed 2026-03-12)
 
 ## Phase Details
 
@@ -94,7 +94,7 @@ Plans:
   3. README.md contains quick-start guide, API overview, and Tailwind CSS comparison that a new user can follow to first styled widget in < 5 minutes
   4. `pana` reports 160/160 points (or documents any unavoidable deductions with justification)
   5. Dartdoc coverage >= 80% on all public APIs
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 05-01-PLAN.md — Example app with 3 tab pages (tokens, extensions, styles) and dark mode toggle
@@ -112,4 +112,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 2. Token System + Theme Integration | 4/4 | Complete | 2026-03-11 |
 | 3. Widget Extensions | 2/2 | Complete    | 2026-03-11 |
 | 4. Style Composition | 0/2 | Not started | - |
-| 5. Polish + Publication | 0/3 | Not started | - |
+| 5. Polish + Publication | 3/3 | Complete   | 2026-03-12 |
