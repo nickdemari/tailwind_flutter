@@ -66,9 +66,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **INF-03**: Example app in `example/` demonstrating all three tiers
 - [x] **INF-04**: Unit tests for all token values, extension methods, theme resolution
 - [ ] **INF-05**: Golden tests for styled widgets across light/dark themes (using Ahem font for CI stability)
-- [ ] **INF-06**: `README.md` with quick-start guide, API overview, and comparison to Tailwind CSS
+- [x] **INF-06**: `README.md` with quick-start guide, API overview, and comparison to Tailwind CSS
 - [x] **INF-07**: `analysis_options.yaml` with `very_good_analysis` + strict mode, zero warnings
-- [ ] **INF-08**: `CHANGELOG.md` following Keep a Changelog format
+- [x] **INF-08**: `CHANGELOG.md` following Keep a Changelog format
 - [x] **INF-09**: CI/CD via GitHub Actions (analyze, test, pana score, coverage)
 - [ ] **INF-10**: Dartdoc coverage ≥ 80% on all public APIs
 
@@ -147,9 +147,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INF-03 | Phase 5 | Pending |
 | INF-04 | Phase 2 | Complete |
 | INF-05 | Phase 5 | Pending |
-| INF-06 | Phase 5 | Pending |
+| INF-06 | Phase 5 | Complete |
 | INF-07 | Phase 1 | Complete |
-| INF-08 | Phase 5 | Pending |
+| INF-08 | Phase 5 | Complete |
 | INF-09 | Phase 1 | Complete |
 | INF-10 | Phase 5 | Pending |
 

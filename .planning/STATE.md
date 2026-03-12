@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 5 context gathered
-last_updated: "2026-03-12T14:24:31.358Z"
-last_activity: 2026-03-12 -- Completed 04-02 style apply/resolve (TwStyle.apply + TwStyle.resolve)
+status: executing
+stopped_at: Completed 05-03-PLAN.md
+last_updated: "2026-03-12T15:05:37.477Z"
+last_activity: 2026-03-12 -- Completed 05-03 README, CHANGELOG, version bump, CI pana ratchet
 progress:
   total_phases: 5
   completed_phases: 4
-  total_plans: 10
-  completed_plans: 10
-  percent: 100
+  total_plans: 13
+  completed_plans: 11
+  percent: 85
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-11)
 
 **Core value:** Complete Tailwind v4 design token parity expressed as type-safe, const Dart values with a composable utility API that enhances Flutter's existing ThemeData system.
-**Current focus:** Phase 4 complete -- all phases done
+**Current focus:** Phase 5 in progress -- README, CHANGELOG, version bump done
 
 ## Current Position
 
-Phase: 5 of 5 (All phases complete)
-Plan: All plans complete (10/10)
-Status: All phases complete
-Last activity: 2026-03-12 -- Completed 04-02 style apply/resolve (TwStyle.apply + TwStyle.resolve)
+Phase: 5 of 5
+Plan: 3 of 3 in phase (11/13 total)
+Status: Executing Phase 5
+Last activity: 2026-03-12 -- Completed 05-03 README, CHANGELOG, version bump, CI pana ratchet
 
-Progress: [██████████] 100%
+Progress: [█████████░] 85%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [██████████] 100%
 | Phase 03 P02 | 3min | 2 tasks | 5 files |
 | Phase 04-style-composition P01 | 4min | 2 tasks | 5 files |
 | Phase 04-style-composition P02 | 4min | 2 tasks | 2 files |
+| Phase 05-polish-publication P03 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -93,6 +94,8 @@ Recent decisions affecting current work:
 - [Phase 04-02]: apply() builds from child outward: textStyle > padding > decoration > opacity > constraints > margin
 - [Phase 04-02]: Decoration consolidation: bg/borderRadius/shadows into single DecoratedBox with BoxDecoration
 - [Phase 04-02]: resolve() uses Theme.of(context).brightness, not MediaQuery
+- [Phase 05-03]: README structured as marketing doc: badges, 3-step quick-start, 3-tier API overview, 14-row Tailwind comparison table
+- [Phase 05-03]: CI pana threshold ratcheted from 120 to 0 (enforces 160/160 on every commit)
 
 ### Pending Todos
 
@@ -105,6 +108,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T14:24:31.352Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-polish-publication/05-CONTEXT.md
+Last session: 2026-03-12T15:05:37.470Z
+Stopped at: Completed 05-03-PLAN.md
+Resume file: None
