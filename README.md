@@ -25,6 +25,17 @@ with Flutter's theme system.
 - **Dark mode** -- `TwVariant.dark` / `TwVariant.light` for
   brightness-conditional style overrides
 
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/tokens_colors.png" width="220" alt="Color palette tokens" />
+  <img src="screenshots/tokens_spacing_typography.png" width="220" alt="Spacing and typography tokens" />
+  <img src="screenshots/extensions.png" width="220" alt="Widget extensions" />
+  <img src="screenshots/styles.png" width="220" alt="Composable styles" />
+</p>
+
+> Example app showing design tokens (colors, spacing, typography), widget extensions with before/after comparisons, and composable styles with variants.
+
 ## Quick Start
 
 **1. Add the dependency**
