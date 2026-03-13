@@ -15,6 +15,11 @@ doc/api/
 *.iws
 .vscode/
 
+# CocoaPods
+**/ios/Podfile
+**/ios/Podfile.lock
+**/ios/Pods/
+
 # OS
 .DS_Store
 Thumbs.db
