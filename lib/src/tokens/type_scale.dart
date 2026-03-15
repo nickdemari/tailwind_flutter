@@ -4,11 +4,20 @@ import 'package:tailwind_flutter/src/tokens/typography.dart';
 ///
 /// Each [TwFontRole] provides three size variants following Material Design's
 /// small / medium / large convention.
-enum TwTypeVariant { sm, md, lg }
+enum TwTypeVariant {
+  /// Small variant.
+  sm,
+
+  /// Medium variant.
+  md,
+
+  /// Large variant.
+  lg,
+}
 
 /// A semantic font role grouping three size variants of [TwFontSize].
 ///
-/// Mirrors [TwColorFamily]'s extension-type pattern -- zero-cost at runtime,
+/// Mirrors `TwColorFamily`'s extension-type pattern -- zero-cost at runtime,
 /// const-constructible, and record-backed.
 ///
 /// ```dart
@@ -18,11 +27,12 @@ enum TwTypeVariant { sm, md, lg }
 extension type const TwFontRole._(
     ({TwFontSize sm, TwFontSize md, TwFontSize lg}) _) {
   /// Creates a font role with three size variants.
-  const TwFontRole(
-      {required TwFontSize sm,
-      required TwFontSize md,
-      required TwFontSize lg})
-      : this._((sm: sm, md: md, lg: lg));
+  const TwFontRole({
+    required TwFontSize sm,
+    required TwFontSize md,
+    required TwFontSize lg,
+  })
+      : this._((sm: sm, md: md, lg: lg,));
 
   /// The small variant.
   TwFontSize get sm => _.sm;
@@ -44,12 +54,13 @@ extension type const TwFontRole._(
 /// Material Design type roles mapped to Tailwind CSS font size tokens.
 ///
 /// Five semantic roles -- [display], [headline], [title], [body], [label] --
-/// each with three size variants accessed via [TwFontRole.sm], [.md], [.lg],
+/// each with three size variants accessed via [TwFontRole.sm],
+/// [TwFontRole.md], [TwFontRole.lg],
 /// or resolved dynamically with [TwFontRole.resolve].
 ///
 /// ```dart
-/// Text('Welcome').headline(.lg).bold()
-/// Text('Details').body(.md)
+/// Text('Welcome').headline(TwTypeVariant.lg).bold()
+/// Text('Details').body(TwTypeVariant.md)
 ///
 /// // Standalone usage:
 /// final style = TwTypeScale.headline.md.textStyle;
@@ -57,21 +68,21 @@ extension type const TwFontRole._(
 abstract final class TwTypeScale {
   /// Display role -- xl4 (36px) / xl5 (48px) / xl6 (60px).
   static const display = TwFontRole(
-      sm: TwFontSizes.xl4, md: TwFontSizes.xl5, lg: TwFontSizes.xl6);
+      sm: TwFontSizes.xl4, md: TwFontSizes.xl5, lg: TwFontSizes.xl6,);
 
   /// Headline role -- xl2 (24px) / xl3 (30px) / xl4 (36px).
   static const headline = TwFontRole(
-      sm: TwFontSizes.xl2, md: TwFontSizes.xl3, lg: TwFontSizes.xl4);
+      sm: TwFontSizes.xl2, md: TwFontSizes.xl3, lg: TwFontSizes.xl4,);
 
   /// Title role -- sm (14px) / base (16px) / xl (20px).
   static const title = TwFontRole(
-      sm: TwFontSizes.sm, md: TwFontSizes.base, lg: TwFontSizes.xl);
+      sm: TwFontSizes.sm, md: TwFontSizes.base, lg: TwFontSizes.xl,);
 
   /// Body role -- xs (12px) / sm (14px) / base (16px).
   static const body = TwFontRole(
-      sm: TwFontSizes.xs, md: TwFontSizes.sm, lg: TwFontSizes.base);
+      sm: TwFontSizes.xs, md: TwFontSizes.sm, lg: TwFontSizes.base,);
 
   /// Label role -- xxs (11px) / xs (12px) / sm (14px).
   static const label = TwFontRole(
-      sm: TwFontSizes.xxs, md: TwFontSizes.xs, lg: TwFontSizes.sm);
+      sm: TwFontSizes.xxs, md: TwFontSizes.xs, lg: TwFontSizes.sm,);
 }
