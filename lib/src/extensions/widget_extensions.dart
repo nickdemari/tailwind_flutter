@@ -347,4 +347,96 @@ extension TwWidgetExtensions on Widget {
   /// Image.network(url).clipOval()
   /// ```
   Widget clipOval() => ClipOval(child: this);
+
+  // ---------------------------------------------------------------------------
+  // Border (EXT-10)
+  // ---------------------------------------------------------------------------
+
+  /// Adds a uniform border around all sides.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [BoxDecoration] containing
+  /// a [Border.all].
+  ///
+  /// ```dart
+  /// widget.border(color: TwColors.slate.shade300, width: 1)
+  /// ```
+  Widget border({Color color = const Color(0xFF000000), double width = 1}) =>
+      DecoratedBox(
+        decoration:
+            BoxDecoration(border: Border.all(color: color, width: width)),
+        child: this,
+      );
+
+  /// Adds a border on the top side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a top [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderTop(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderTop({Color color = const Color(0xFF000000), double width = 1}) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
+
+  /// Adds a border on the bottom side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a bottom [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderBottom(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderBottom({
+    Color color = const Color(0xFF000000),
+    double width = 1,
+  }) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
+
+  /// Adds a border on the left side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a left [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderLeft(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderLeft({
+    Color color = const Color(0xFF000000),
+    double width = 1,
+  }) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(left: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
+
+  /// Adds a border on the right side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a right [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderRight(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderRight({
+    Color color = const Color(0xFF000000),
+    double width = 1,
+  }) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(right: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
 }

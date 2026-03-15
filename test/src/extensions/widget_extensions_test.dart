@@ -288,6 +288,111 @@ void main() {
       });
     });
 
+    group('border extensions', () {
+      testWidgets('.border() wraps in DecoratedBox with uniform border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox().border(color: Colors.red, width: 2),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(decoration.border, Border.all(color: Colors.red, width: 2));
+      });
+
+      testWidgets('.border() defaults to width 1 and black', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().border()),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(decoration.border, Border.all());
+      });
+
+      testWidgets('.borderTop() wraps in DecoratedBox with top border only',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home:
+                const SizedBox().borderTop(color: Colors.blue, width: 3),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(top: BorderSide(color: Colors.blue, width: 3)),
+        );
+      });
+
+      testWidgets('.borderBottom() wraps in DecoratedBox with bottom border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox()
+                .borderBottom(color: Colors.green, width: 2),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(
+            bottom: BorderSide(color: Colors.green, width: 2),
+          ),
+        );
+      });
+
+      testWidgets('.borderLeft() wraps in DecoratedBox with left border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox()
+                .borderLeft(color: Colors.orange),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(
+            left: BorderSide(color: Colors.orange),
+          ),
+        );
+      });
+
+      testWidgets('.borderRight() wraps in DecoratedBox with right border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox()
+                .borderRight(color: Colors.purple, width: 4),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(
+            right: BorderSide(color: Colors.purple, width: 4),
+          ),
+        );
+      });
+    });
+
     group('chaining', () {
       testWidgets(
           'chained calls produce correct nesting (last call outermost)',
