@@ -32,11 +32,14 @@ extension type const TwFontSize._(({double size, double lineHeight}) _) {
 
 /// Tailwind CSS font size scale.
 ///
-/// 13 size classes from [xs] (12px) to [xl9] (128px), each with a paired
+/// 14 size classes from [xxs] (11px) to [xl9] (128px), each with a paired
 /// line-height ratio derived from Tailwind v4's `calc()` values.
 ///
 /// Sizes xl5 and above use a line-height of 1.0 (matching the font size).
 abstract final class TwFontSizes {
+  /// 11px, line-height 16/11 = ~1.4545
+  static const xxs = TwFontSize(11, 1.4545);
+
   /// 12px, line-height 16/12 = ~1.3333
   static const xs = TwFontSize(12, 1.3333);
 
