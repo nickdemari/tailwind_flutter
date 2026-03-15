@@ -5,25 +5,61 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 
-Tailwind CSS design tokens and utility-first styling API for Flutter. Type-safe
-constants, chainable widget extensions, and composable styles -- all integrated
-with Flutter's theme system.
+**Stop nesting six widgets to style a card.**
+
+Styling in Flutter means wrapping your widget in `Padding`, then `ColoredBox`,
+then `ClipRRect`, then `DecoratedBox`, then another `Padding` for margin...
+you get the idea. tailwind_flutter replaces that nesting pyramid with chainable
+extensions that produce the **exact same widget tree** -- flatter code, identical
+performance, zero dependencies beyond the Flutter SDK.
+
+```dart
+// Before -- six levels of nesting for one styled card:
+Padding(
+  padding: EdgeInsets.all(12),
+  child: DecoratedBox(
+    decoration: BoxDecoration(boxShadow: [/* ... */]),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: ColoredBox(
+        color: Colors.blue.shade50,
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Text('Hello'),
+        ),
+      ),
+    ),
+  ),
+)
+
+// After -- same widget tree, readable in one glance:
+Text('Hello')
+    .p(TwSpacing.s4)
+    .bg(TwColors.blue.shade50)
+    .rounded(TwRadii.lg)
+    .shadow(TwShadows.md)
+    .m(TwSpacing.s3)
+```
 
 ## Features
 
-- **Complete Tailwind v4 token set** -- 242 colors, 35 spacing values, 13 font
-  sizes, 9 font weights, 10 border radii, 7 shadow levels, 21 opacity steps,
-  and 5 responsive breakpoints
-- **Widget extensions** -- chain `.p()`, `.bg()`, `.rounded()`, `.shadow()` on
-  any widget instead of nesting Padding/ColoredBox/ClipRRect manually
-- **Text extensions** -- `.bold()`, `.fontSize()`, `.textColor()` directly on
-  Text widgets
+- **Widget extensions** -- chain `.p()`, `.bg()`, `.rounded()`, `.shadow()`,
+  `.border()`, `.gradient()`, `.visible()`, `.aspectRatio()`, `.flexible()`,
+  `.expanded()`, `.tooltip()`, and more on any widget instead of nesting
+  wrappers manually
+- **Text extensions** -- `.bold()`, `.fontSize()`, `.textColor()`,
+  `.underline()`, `.lineThrough()`, `.uppercase()`, `.lowercase()`,
+  `.capitalize()`, `.fontFamily()`, `.align()` directly on Text widgets
+- **Complete design token set** -- 242 colors, 35 spacing values, 13 font sizes,
+  9 font weights, 10 border radii, 7 shadow levels, 21 opacity steps, and
+  5 responsive breakpoints, all mirroring Tailwind v4's battle-tested scale
 - **Composable styles** -- define reusable `TwStyle` objects (like CSS classes),
   merge them, and apply them to widgets
 - **Theme integration** -- 7 `ThemeExtension` classes, `TwTheme` widget,
   `context.tw` accessor, light/dark presets
 - **Dark mode** -- `TwVariant.dark` / `TwVariant.light` for
   brightness-conditional style overrides
+- **Zero dependencies** -- only the Flutter SDK
 
 ## Screenshots
 
@@ -42,7 +78,7 @@ with Flutter's theme system.
 
 ```yaml
 dependencies:
-  tailwind_flutter: ^0.1.0
+  tailwind_flutter: ^0.2.0
 ```
 
 **2. Wrap your app in TwTheme**
@@ -115,10 +151,30 @@ widget nesting. Each method wraps the widget in exactly one Flutter widget.
 
 **Widget extensions** (on any Widget):
 
+| Extension | Description |
+|-----------|-------------|
+| `.p()`, `.px()`, `.py()`, `.pt()`, `.pb()`, `.pl()`, `.pr()` | Padding (all, horizontal, vertical, directional) |
+| `.m()`, `.mx()`, `.my()`, `.mt()`, `.mb()`, `.ml()`, `.mr()` | Margin (all, horizontal, vertical, directional) |
+| `.bg(Color)` | Background color |
+| `.gradient(Gradient)` | Background gradient |
+| `.rounded(double)` | Border radius |
+| `.shadow(List<BoxShadow>)` | Box shadow |
+| `.border(color:, width:)` | Border on all sides |
+| `.borderTop()`, `.borderBottom()`, `.borderLeft()`, `.borderRight()` | Directional borders |
+| `.opacity(double)` | Opacity |
+| `.width(double)`, `.height(double)` | Size constraints |
+| `.visible({required bool visible})` | Visibility toggle |
+| `.invisible()` | Hide widget (maintains layout) |
+| `.aspectRatio(double)` | Aspect ratio constraint |
+| `.flexible(flex:)` | Flexible in a Flex layout |
+| `.expanded(flex:)` | Expanded in a Flex layout |
+| `.tooltip(String)` | Tooltip wrapper |
+
 ```dart
 Container(child: Text('Card content'))
   .p(TwSpacing.s4)              // inner padding
   .bg(TwColors.white)           // background color
+  .border(color: TwColors.slate.shade200, width: 1)
   .rounded(TwRadii.lg)          // rounded corners
   .shadow(TwShadows.md)         // box shadow
   .opacity(TwOpacity.o90)       // opacity
@@ -127,13 +183,30 @@ Container(child: Text('Card content'))
 
 **Text extensions** (on Text widgets):
 
+| Extension | Description |
+|-----------|-------------|
+| `.bold()` | Bold font weight |
+| `.fontSize(double)` | Font size (with paired line-height from tokens) |
+| `.fontWeight(FontWeight)` | Arbitrary font weight |
+| `.fontFamily(String)` | Font family |
+| `.textColor(Color)` | Text color |
+| `.letterSpacing(double)` | Letter spacing |
+| `.lineHeight(double)` | Line height multiplier |
+| `.underline()` | Underline text decoration |
+| `.lineThrough()` | Strikethrough decoration |
+| `.overline()` | Overline decoration |
+| `.uppercase()` | Transform text to UPPERCASE |
+| `.lowercase()` | Transform text to lowercase |
+| `.capitalize()` | Capitalize First Letter Of Each Word |
+| `.align(TextAlign)` | Text alignment |
+
 ```dart
 Text('Styled text')
   .bold()
   .fontSize(TwFontSizes.xl)
   .textColor(TwColors.slate.shade700)
-  .letterSpacing(0.5)
-  .lineHeight(1.6)
+  .underline()
+  .uppercase()
 ```
 
 > **Order matters:** Text extensions must come before widget extensions in the
@@ -188,7 +261,60 @@ Widget build(BuildContext context) {
 }
 ```
 
-## Tailwind CSS Comparison
+## Performance
+
+Chained extensions produce the **exact same widget tree** as manually nesting
+`Padding`, `ColoredBox`, `ClipRRect`, etc. Each extension method is syntactic
+sugar that returns the standard Flutter widget you would write by hand -- no
+wrapper widgets, no intermediate builders, no performance layer.
+
+Benchmarks confirm this:
+
+| Approach | Tree depth | Widget types |
+|----------|-----------|--------------|
+| Chained extensions (`.p().bg().rounded()`) | 6 | Identical |
+| Manual nesting (`Padding(child: ColoredBox(...))`) | 6 | Identical |
+| `TwStyle.apply()` (consolidates into `DecoratedBox`) | 5 | Fewer elements |
+
+Tree depth and widget type sequences are verified by assertion, not just
+observation. For performance-critical hot paths (long scrolling lists, animated
+transitions), `TwStyle.apply()` consolidates `backgroundColor`, `borderRadius`,
+and `shadows` into a single `DecoratedBox` for fewer `Element.update()` calls
+per frame.
+
+Full methodology and results: [docs/performance.md](docs/performance.md)
+
+## Comparison with VelocityX
+
+[VelocityX](https://pub.dev/packages/velocity_x) is the most well-known
+Tailwind-inspired Flutter package, and it's been around much longer -- it has
+a larger community and a broader scope. Here's how the two differ:
+
+| Dimension | VelocityX | tailwind_flutter |
+|---|---|---|
+| **Scope** | Full framework (widgets, state mgmt, utils) | Focused (tokens + styling only) |
+| **Dependencies** | 5 external | 0 (Flutter SDK only) |
+| **Runtime cost** | Builder objects allocated per styled widget | Zero (extension types compile away) |
+| **Token fidelity** | Tailwind-inspired names, custom pixel scales | Tailwind v4 exact rem-based scales |
+| **Style composition** | No reusable style system | TwStyle with merge/resolve/dark mode |
+| **Theme integration** | None (bypasses ThemeData) | Native ThemeData.extensions |
+| **Builder pattern** | Yes (`.text.bold.make()`) | No (direct widget extensions) |
+| **Maintenance** | Maintenance mode since 2023, docs site offline | Active development |
+
+**Where VelocityX wins:** If you want an all-in-one framework with navigation
+helpers, responsive builders, state management utils, and a large existing
+community, VelocityX covers more ground.
+
+**Where tailwind_flutter wins:** If you want a focused styling library that
+composes with standard Flutter instead of replacing it -- zero dependencies,
+compile-time extensions (no builder allocations), exact Tailwind v4 token
+fidelity, reusable `TwStyle` objects, and native `ThemeData` integration.
+
+The key philosophical difference: VelocityX is a **framework** that wants to
+own your widget tree. tailwind_flutter is a **library** that composes with
+standard Flutter widgets and patterns.
+
+## Tailwind CSS Mapping
 
 Coming from Tailwind CSS on the web? Here's how utilities map to
 tailwind_flutter:
@@ -208,6 +334,11 @@ tailwind_flutter:
 | `opacity-50` | `.opacity(TwOpacity.o50)` | Widget extension |
 | `text-slate-700` | `.textColor(TwColors.slate.shade700)` | Text extension |
 | `w-64` | `.width(TwSpacing.s64)` | 256px width |
+| `border` | `.border(color:, width:)` | Widget extension |
+| `border-t` | `.borderTop()` | Directional border |
+| `underline` | `.underline()` | Text extension |
+| `uppercase` | `.uppercase()` | Text extension |
+| `invisible` | `.invisible()` | Widget extension |
 | `dark:bg-gray-800` | `TwVariant.dark` in TwStyle variants | Resolve with context |
 
 ## Theme Setup

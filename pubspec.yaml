@@ -1,7 +1,7 @@
 name: tailwind_flutter
 description: >-
-  Tailwind CSS design tokens and utility-first styling API for Flutter.
-  Type-safe, composable, theme-aware.
+  Utility-first styling for Flutter. Chainable widget extensions and
+  a complete design token set to eliminate deep widget nesting.
 version: 0.2.0
 homepage: https://github.com/nickdemari/tailwind_flutter
 repository: https://github.com/nickdemari/tailwind_flutter
