@@ -156,6 +156,43 @@ void main() {
         expect(text.style?.decoration, TextDecoration.overline);
         expect(text.data, 'Hello');
       });
+
+      testWidgets('.fontFamily() sets font family', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').fontFamily('Roboto')),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontFamily, 'Roboto');
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.align() sets text alignment', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: SizedBox(
+              width: 200,
+              child: Text('Hello').align(TextAlign.center),
+            ),
+          ),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.textAlign, TextAlign.center);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.align() preserves existing style', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Text(
+              'Hello',
+              style: const TextStyle(color: Colors.red),
+            ).align(TextAlign.right),
+          ),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.textAlign, TextAlign.right);
+        expect(text.style?.color, Colors.red);
+      });
     });
 
     group('parameter preservation', () {

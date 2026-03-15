@@ -203,6 +203,44 @@ extension TwTextExtensions on Text {
               }).join(' '),
       );
 
+  /// Sets the font family.
+  ///
+  /// ```dart
+  /// Text('Hello').fontFamily('Roboto')
+  /// ```
+  Text fontFamily(String family) => _copyWith(
+        style: (style ?? const TextStyle()).copyWith(fontFamily: family),
+      );
+
+  /// Sets the text alignment.
+  ///
+  /// Unlike other text extensions, this modifies the [Text.textAlign]
+  /// constructor parameter rather than the [TextStyle].
+  ///
+  /// Named [align] instead of `textAlign` to avoid shadowing the
+  /// [Text.textAlign] property.
+  ///
+  /// ```dart
+  /// Text('Hello').align(TextAlign.center)
+  /// ```
+  Text align(TextAlign alignment) => Text(
+        data!,
+        key: key,
+        style: style,
+        strutStyle: strutStyle,
+        textAlign: alignment,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaler: textScaler,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+        selectionColor: selectionColor,
+      );
+
   /// Creates a new [Text] with an updated [TextStyle], preserving all
   /// constructor parameters.
   ///
