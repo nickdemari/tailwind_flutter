@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-03-14
+
+### Added
+
+- Semantic type scale: `TwTypeScale` with 5 roles (`display`, `headline`,
+  `title`, `body`, `label`) each providing `sm`, `md`, `lg` variants via
+  `TwFontRole`
+- Type scale extension methods on `Text`: `.display()`, `.headline()`,
+  `.title()`, `.body()`, `.label()` — accepts `TwTypeVariant` (or dot
+  shorthand on Dart 3.10+: `.body(.md)`)
+- `TwFontSizes.xxs` (11px) token for `label.sm` mapping
+- Text extensions: `.uppercase()`, `.lowercase()`, `.capitalize()`,
+  `.underline()`, `.lineThrough()`, `.overline()`, `.fontFamily()`,
+  `.align()`
+- Widget extensions: `.flexible()`, `.expanded()`, `.tooltip()`,
+  `.gradient()`, `.visible()`, `.invisible()`, `.aspectRatio()`,
+  `.border()`, `.borderTop()`, `.borderBottom()`, `.borderLeft()`,
+  `.borderRight()`
+- Real-world layouts example page (profile card, pricing table, settings list)
+- Extensions demo page in example app
+- Benchmarks comparing extension chaining vs manual widget nesting
+
+### Changed
+
+- Minimum SDK bumped to Dart 3.7 / Flutter 3.29
+- Example app SDK bumped to Dart 3.10 to showcase dot shorthand syntax
+
 ## [0.1.1] - 2026-03-12
 
 ### Changed
