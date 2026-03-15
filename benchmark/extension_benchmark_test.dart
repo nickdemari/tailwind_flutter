@@ -124,23 +124,6 @@ void main() {
       return maxDepth;
     }
 
-    /// Find the first element of [type] under the root.
-    Element? findFirst(WidgetTester tester, Type type) {
-      Element? found;
-      tester.element(find.byType(MaterialApp)).visitChildElements((element) {
-        void walk(Element el) {
-          if (found != null) return;
-          if (el.widget.runtimeType == type) {
-            found = el;
-            return;
-          }
-          el.visitChildren(walk);
-        }
-        walk(element);
-      });
-      return found;
-    }
-
     testWidgets(
       'chained extensions produce same depth as manual nesting',
       (tester) async {
