@@ -393,6 +393,74 @@ void main() {
       });
     });
 
+    group('gradient extension', () {
+      testWidgets('.gradient() wraps in DecoratedBox with gradient',
+          (tester) async {
+        const gradient = LinearGradient(
+          colors: [Colors.blue, Colors.red],
+        );
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().gradient(gradient)),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(decoration.gradient, gradient);
+      });
+    });
+
+    group('visibility extensions', () {
+      testWidgets('.visible(true) wraps in Visibility with visible=true',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox().visible(visible: true),
+          ),
+        );
+
+        final visibility =
+            tester.widget<Visibility>(find.byType(Visibility));
+        expect(visibility.visible, true);
+      });
+
+      testWidgets('.visible(false) wraps in Visibility with visible=false',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox().visible(visible: false),
+          ),
+        );
+
+        final visibility =
+            tester.widget<Visibility>(find.byType(Visibility));
+        expect(visibility.visible, false);
+      });
+
+      testWidgets('.invisible() wraps in Visibility with visible=false',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().invisible()),
+        );
+
+        final visibility =
+            tester.widget<Visibility>(find.byType(Visibility));
+        expect(visibility.visible, false);
+      });
+    });
+
+    group('aspect ratio extension', () {
+      testWidgets('.aspectRatio() wraps in AspectRatio', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().aspectRatio(16 / 9)),
+        );
+
+        final aspectRatio =
+            tester.widget<AspectRatio>(find.byType(AspectRatio));
+        expect(aspectRatio.aspectRatio, 16 / 9);
+      });
+    });
+
     group('chaining', () {
       testWidgets(
           'chained calls produce correct nesting (last call outermost)',

@@ -439,4 +439,64 @@ extension TwWidgetExtensions on Widget {
         ),
         child: this,
       );
+
+  // ---------------------------------------------------------------------------
+  // Gradient (EXT-11)
+  // ---------------------------------------------------------------------------
+
+  /// Applies a gradient background.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [BoxDecoration] containing
+  /// the provided [gradient].
+  ///
+  /// ```dart
+  /// widget.gradient(
+  ///   LinearGradient(
+  ///     colors: [TwColors.blue.shade400, TwColors.purple.shade400],
+  ///   ),
+  /// )
+  /// ```
+  Widget gradient(Gradient gradient) => DecoratedBox(
+        decoration: BoxDecoration(gradient: gradient),
+        child: this,
+      );
+
+  // ---------------------------------------------------------------------------
+  // Visibility (EXT-12)
+  // ---------------------------------------------------------------------------
+
+  /// Conditionally shows or hides this widget.
+  ///
+  /// Wraps this widget in a [Visibility] widget. When [visible] is `false`,
+  /// the widget is hidden but still occupies layout space (like CSS
+  /// `visibility: hidden`).
+  ///
+  /// ```dart
+  /// widget.visible(visible: isLoggedIn)
+  /// ```
+  Widget visible({required bool visible}) =>
+      Visibility(visible: visible, child: this);
+
+  /// Hides this widget while preserving its layout space.
+  ///
+  /// Equivalent to `.visible(false)`.
+  ///
+  /// ```dart
+  /// widget.invisible()
+  /// ```
+  Widget invisible() => Visibility(visible: false, child: this);
+
+  // ---------------------------------------------------------------------------
+  // Aspect Ratio (EXT-13)
+  // ---------------------------------------------------------------------------
+
+  /// Constrains this widget to a specific aspect ratio.
+  ///
+  /// Wraps this widget in an [AspectRatio] widget.
+  ///
+  /// ```dart
+  /// widget.aspectRatio(16 / 9)
+  /// ```
+  Widget aspectRatio(double ratio) =>
+      AspectRatio(aspectRatio: ratio, child: this);
 }
