@@ -293,5 +293,64 @@ void main() {
         expect(text.data, 'Hello');
       });
     });
+
+    group('text transform extensions', () {
+      testWidgets('.uppercase() transforms text to uppercase',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('hello world').uppercase()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'HELLO WORLD');
+      });
+
+      testWidgets('.lowercase() transforms text to lowercase',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('HELLO WORLD').lowercase()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'hello world');
+      });
+
+      testWidgets('.capitalize() capitalizes first letter of each word',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('hello world').capitalize()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'Hello World');
+      });
+
+      testWidgets('.capitalize() handles single word', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('hello').capitalize()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.capitalize() handles empty string', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('').capitalize()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, '');
+      });
+
+      testWidgets('.uppercase() preserves style', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Text(
+              'hello',
+              style: const TextStyle(color: Colors.red),
+            ).uppercase(),
+          ),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'HELLO');
+        expect(text.style?.color, Colors.red);
+      });
+    });
   });
 }

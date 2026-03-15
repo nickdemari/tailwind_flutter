@@ -169,6 +169,40 @@ extension TwTextExtensions on Text {
             .copyWith(decoration: TextDecoration.overline),
       );
 
+  /// Transforms all characters to uppercase.
+  ///
+  /// Modifies the text string, not the style.
+  ///
+  /// ```dart
+  /// Text('hello').uppercase() // 'HELLO'
+  /// ```
+  Text uppercase() => _copyWithData(data!.toUpperCase());
+
+  /// Transforms all characters to lowercase.
+  ///
+  /// Modifies the text string, not the style.
+  ///
+  /// ```dart
+  /// Text('HELLO').lowercase() // 'hello'
+  /// ```
+  Text lowercase() => _copyWithData(data!.toLowerCase());
+
+  /// Capitalizes the first letter of each word.
+  ///
+  /// Modifies the text string, not the style.
+  ///
+  /// ```dart
+  /// Text('hello world').capitalize() // 'Hello World'
+  /// ```
+  Text capitalize() => _copyWithData(
+        data!.isEmpty
+            ? data!
+            : data!.split(' ').map((w) {
+                if (w.isEmpty) return w;
+                return w[0].toUpperCase() + w.substring(1);
+              }).join(' '),
+      );
+
   /// Creates a new [Text] with an updated [TextStyle], preserving all
   /// constructor parameters.
   ///
@@ -179,6 +213,26 @@ extension TwTextExtensions on Text {
         data!,
         key: key,
         style: style ?? this.style,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaler: textScaler,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+        selectionColor: selectionColor,
+      );
+
+  /// Creates a new [Text] with replaced [data], preserving style and all
+  /// constructor parameters.
+  Text _copyWithData(String newData) => Text(
+        newData,
+        key: key,
+        style: style,
         strutStyle: strutStyle,
         textAlign: textAlign,
         textDirection: textDirection,
