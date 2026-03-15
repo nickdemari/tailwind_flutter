@@ -20,12 +20,12 @@ class LayoutsPage extends StatelessWidget {
         children: [
           Text('Real-World Layouts')
               .bold()
-              .fontSize(TwFontSizes.xl)
+              .headline(.sm)
               .textColor(fg)
               .pb(TwSpacing.s1),
           Text('Complex UI patterns built with tailwind_flutter — no raw '
                   'Container nesting required.')
-              .fontSize(TwFontSizes.sm)
+              .body(.md)
               .textColor(muted)
               .pb(TwSpacing.s6),
 
@@ -60,7 +60,7 @@ Widget _sectionHeader(String text, {required bool isDark}) {
   final fg = isDark ? TwColors.zinc.shade100 : TwColors.slate.shade800;
   return Text(text)
       .bold()
-      .fontSize(TwFontSizes.lg)
+      .title(.lg)
       .textColor(fg)
       .pb(TwSpacing.s3);
 }
@@ -88,7 +88,7 @@ class _ProfileCard extends StatelessWidget {
             // Avatar: colored circle with initials
             Text('JD')
                 .bold()
-                .fontSize(TwFontSizes.xl)
+                .title(.lg)
                 .textColor(TwColors.white)
                 .center()
                 .bg(TwColors.violet.shade500)
@@ -102,12 +102,12 @@ class _ProfileCard extends StatelessWidget {
                 children: [
                   Text('Jane Developer')
                       .bold()
-                      .fontSize(TwFontSizes.lg)
+                      .title(.lg)
                       .textColor(fg),
                   SizedBox(height: TwSpacing.s1),
                   Text('Flutter engineer crafting pixel-perfect UIs. '
                           'Tailwind enthusiast. Coffee addict.')
-                      .fontSize(TwFontSizes.sm)
+                      .body(.md)
                       .textColor(muted),
                 ],
               ),
@@ -120,7 +120,7 @@ class _ProfileCard extends StatelessWidget {
           children: [
             Text('Follow')
                 .bold()
-                .fontSize(TwFontSizes.sm)
+                .label(.lg)
                 .textColor(TwColors.white)
                 .px(TwSpacing.s5)
                 .py(TwSpacing.s2)
@@ -129,7 +129,7 @@ class _ProfileCard extends StatelessWidget {
             SizedBox(width: TwSpacing.s3),
             Text('Message')
                 .bold()
-                .fontSize(TwFontSizes.sm)
+                .label(.lg)
                 .textColor(
                   isDark ? TwColors.zinc.shade200 : TwColors.slate.shade700,
                 )
@@ -290,7 +290,7 @@ class _PricingTable extends StatelessWidget {
         if (badge != null)
           Text(badge)
               .bold()
-              .fontSize(TwFontSizes.xs)
+              .label(.md)
               .textColor(TwColors.white)
               .px(TwSpacing.s2)
               .py(TwSpacing.s0_5)
@@ -299,18 +299,20 @@ class _PricingTable extends StatelessWidget {
               .pb(TwSpacing.s2),
         Text(tierName)
             .bold()
-            .fontSize(TwFontSizes.base)
+            .title(.md)
             .textColor(fg),
         SizedBox(height: TwSpacing.s1),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(price)
-                .bold()
-                .fontSize(TwFontSizes.xl3)
-                .textColor(fg),
+            Flexible(
+              child: Text(price)
+                  .bold()
+                  .headline(.md)
+                  .textColor(fg),
+            ),
             Text(period)
-                .fontSize(TwFontSizes.sm)
+                .body(.md)
                 .textColor(muted)
                 .pb(TwSpacing.s1),
           ],
@@ -326,7 +328,7 @@ class _PricingTable extends StatelessWidget {
               ),
               SizedBox(width: TwSpacing.s2),
               Expanded(
-                child: Text(f).fontSize(TwFontSizes.sm).textColor(muted),
+                child: Text(f).body(.md).textColor(muted),
               ),
             ],
           ).pb(TwSpacing.s2),
@@ -336,7 +338,7 @@ class _PricingTable extends StatelessWidget {
         Text('Get Started')
             .align(TextAlign.center)
             .bold()
-            .fontSize(TwFontSizes.sm)
+            .label(.lg)
             .textColor(ctaFg)
             .py(TwSpacing.s2)
             .bg(ctaBg)
@@ -370,7 +372,7 @@ class _SettingsList extends StatelessWidget {
         Text('ACCOUNT')
             .uppercase()
             .bold()
-            .fontSize(TwFontSizes.xs)
+            .label(.md)
             .letterSpacing(1.2)
             .textColor(muted)
             .pb(TwSpacing.s3),
@@ -466,11 +468,11 @@ class _SettingsList extends StatelessWidget {
             children: [
               Text(title)
                   .fontWeight(TwFontWeights.medium)
-                  .fontSize(TwFontSizes.base)
+                  .title(.md)
                   .textColor(fg),
               SizedBox(height: TwSpacing.s0_5),
               Text(subtitle)
-                  .fontSize(TwFontSizes.sm)
+                  .body(.md)
                   .textColor(muted),
             ],
           ),
