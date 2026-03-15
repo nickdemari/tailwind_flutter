@@ -126,6 +126,36 @@ void main() {
         expect(text.style?.color, Colors.red);
         expect(text.style?.fontWeight, FontWeight.bold);
       });
+
+      testWidgets('.underline() sets text decoration to underline',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').underline()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.decoration, TextDecoration.underline);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.lineThrough() sets text decoration to lineThrough',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').lineThrough()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.decoration, TextDecoration.lineThrough);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.overline() sets text decoration to overline',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').overline()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.decoration, TextDecoration.overline);
+        expect(text.data, 'Hello');
+      });
     });
 
     group('parameter preservation', () {

@@ -139,6 +139,36 @@ extension TwTextExtensions on Text {
         style: (style ?? const TextStyle()).merge(textStyle),
       );
 
+  /// Adds an underline decoration to the text.
+  ///
+  /// ```dart
+  /// Text('Hello').underline()
+  /// ```
+  Text underline() => _copyWith(
+        style: (style ?? const TextStyle())
+            .copyWith(decoration: TextDecoration.underline),
+      );
+
+  /// Adds a line-through (strikethrough) decoration to the text.
+  ///
+  /// ```dart
+  /// Text('Original price').lineThrough()
+  /// ```
+  Text lineThrough() => _copyWith(
+        style: (style ?? const TextStyle())
+            .copyWith(decoration: TextDecoration.lineThrough),
+      );
+
+  /// Adds an overline decoration to the text.
+  ///
+  /// ```dart
+  /// Text('Hello').overline()
+  /// ```
+  Text overline() => _copyWith(
+        style: (style ?? const TextStyle())
+            .copyWith(decoration: TextDecoration.overline),
+      );
+
   /// Creates a new [Text] with an updated [TextStyle], preserving all
   /// constructor parameters.
   ///
