@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tailwind_flutter/src/extensions/text_extensions.dart';
+import 'package:tailwind_flutter/src/tokens/type_scale.dart';
 import 'package:tailwind_flutter/src/tokens/typography.dart';
 
 void main() {
@@ -387,6 +388,99 @@ void main() {
         final text = tester.widget<Text>(find.byType(Text));
         expect(text.data, 'HELLO');
         expect(text.style?.color, Colors.red);
+      });
+    });
+
+    group('type role extensions', () {
+      testWidgets('.display() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').display(TwTypeVariant.sm)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 36.0); // xl4
+        expect(text.style?.height, closeTo(1.1111, 0.001));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.headline() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').headline(TwTypeVariant.md)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 30.0); // xl3
+        expect(text.style?.height, 1.2);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.title() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').title(TwTypeVariant.lg)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 20.0); // xl
+        expect(text.style?.height, 1.4);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.body() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').body(TwTypeVariant.sm)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 12.0); // xs
+        expect(text.style?.height, closeTo(1.3333, 0.001));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.label() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').label(TwTypeVariant.sm)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 11.0); // xxs
+        expect(text.style?.height, closeTo(1.4545, 0.001));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('role methods chain with other text extensions',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello')
+                  .headline(TwTypeVariant.lg)
+                  .bold()
+                  .textColor(Colors.red)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 36.0); // xl4
+        expect(text.style?.fontWeight, FontWeight.bold);
+        expect(text.style?.color, Colors.red);
+      });
+
+      testWidgets('role methods preserve Text constructor parameters',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text(
+            'Hello',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ).headline(TwTypeVariant.md)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 30.0);
+        expect(text.maxLines, 2);
+        expect(text.overflow, TextOverflow.ellipsis);
       });
     });
   });

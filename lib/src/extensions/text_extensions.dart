@@ -28,6 +28,7 @@
 library;
 
 import 'package:flutter/widgets.dart';
+import 'package:tailwind_flutter/src/tokens/type_scale.dart';
 import 'package:tailwind_flutter/src/tokens/typography.dart';
 
 /// Tailwind-style text styling extensions on [Text].
@@ -240,6 +241,56 @@ extension TwTextExtensions on Text {
         textHeightBehavior: textHeightBehavior,
         selectionColor: selectionColor,
       );
+
+  /// Sets the font size to the [display] type role variant.
+  ///
+  /// Maps to [TwTypeScale.display]: xl4 (36px) / xl5 (48px) / xl6 (60px).
+  ///
+  /// ```dart
+  /// Text('Hero').display(TwTypeVariant.lg) // 60px
+  /// ```
+  Text display(TwTypeVariant variant) =>
+      fontSize(TwTypeScale.display.resolve(variant));
+
+  /// Sets the font size to the [headline] type role variant.
+  ///
+  /// Maps to [TwTypeScale.headline]: xl2 (24px) / xl3 (30px) / xl4 (36px).
+  ///
+  /// ```dart
+  /// Text('Welcome').headline(TwTypeVariant.md) // 30px
+  /// ```
+  Text headline(TwTypeVariant variant) =>
+      fontSize(TwTypeScale.headline.resolve(variant));
+
+  /// Sets the font size to the [title] type role variant.
+  ///
+  /// Maps to [TwTypeScale.title]: sm (14px) / base (16px) / xl (20px).
+  ///
+  /// ```dart
+  /// Text('Section').title(TwTypeVariant.lg) // 20px
+  /// ```
+  Text title(TwTypeVariant variant) =>
+      fontSize(TwTypeScale.title.resolve(variant));
+
+  /// Sets the font size to the [body] type role variant.
+  ///
+  /// Maps to [TwTypeScale.body]: xs (12px) / sm (14px) / base (16px).
+  ///
+  /// ```dart
+  /// Text('Content').body(TwTypeVariant.md) // 14px
+  /// ```
+  Text body(TwTypeVariant variant) =>
+      fontSize(TwTypeScale.body.resolve(variant));
+
+  /// Sets the font size to the [label] type role variant.
+  ///
+  /// Maps to [TwTypeScale.label]: xxs (11px) / xs (12px) / sm (14px).
+  ///
+  /// ```dart
+  /// Text('Hint').label(TwTypeVariant.sm) // 11px
+  /// ```
+  Text label(TwTypeVariant variant) =>
+      fontSize(TwTypeScale.label.resolve(variant));
 
   /// Creates a new [Text] with an updated [TextStyle], preserving all
   /// constructor parameters.
