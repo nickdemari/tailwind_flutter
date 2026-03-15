@@ -24,6 +24,7 @@
 /// the parent. Use `.rounded().shadow()` to paint the shadow outside.
 library;
 
+import 'package:flutter/material.dart' show Tooltip;
 import 'package:flutter/widgets.dart';
 
 /// Tailwind-style chaining extensions on [Widget].
@@ -347,4 +348,196 @@ extension TwWidgetExtensions on Widget {
   /// Image.network(url).clipOval()
   /// ```
   Widget clipOval() => ClipOval(child: this);
+
+  // ---------------------------------------------------------------------------
+  // Border (EXT-10)
+  // ---------------------------------------------------------------------------
+
+  /// Adds a uniform border around all sides.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [BoxDecoration] containing
+  /// a [Border.all].
+  ///
+  /// ```dart
+  /// widget.border(color: TwColors.slate.shade300, width: 1)
+  /// ```
+  Widget border({Color color = const Color(0xFF000000), double width = 1}) =>
+      DecoratedBox(
+        decoration:
+            BoxDecoration(border: Border.all(color: color, width: width)),
+        child: this,
+      );
+
+  /// Adds a border on the top side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a top [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderTop(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderTop({Color color = const Color(0xFF000000), double width = 1}) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(top: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
+
+  /// Adds a border on the bottom side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a bottom [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderBottom(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderBottom({
+    Color color = const Color(0xFF000000),
+    double width = 1,
+  }) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
+
+  /// Adds a border on the left side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a left [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderLeft(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderLeft({
+    Color color = const Color(0xFF000000),
+    double width = 1,
+  }) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(left: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
+
+  /// Adds a border on the right side only.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [Border] containing
+  /// only a right [BorderSide].
+  ///
+  /// ```dart
+  /// widget.borderRight(color: TwColors.slate.shade200)
+  /// ```
+  Widget borderRight({
+    Color color = const Color(0xFF000000),
+    double width = 1,
+  }) =>
+      DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border(right: BorderSide(color: color, width: width)),
+        ),
+        child: this,
+      );
+
+  // ---------------------------------------------------------------------------
+  // Gradient (EXT-11)
+  // ---------------------------------------------------------------------------
+
+  /// Applies a gradient background.
+  ///
+  /// Wraps this widget in a [DecoratedBox] with a [BoxDecoration] containing
+  /// the provided [gradient].
+  ///
+  /// ```dart
+  /// widget.gradient(
+  ///   LinearGradient(
+  ///     colors: [TwColors.blue.shade400, TwColors.purple.shade400],
+  ///   ),
+  /// )
+  /// ```
+  Widget gradient(Gradient gradient) => DecoratedBox(
+        decoration: BoxDecoration(gradient: gradient),
+        child: this,
+      );
+
+  // ---------------------------------------------------------------------------
+  // Visibility (EXT-12)
+  // ---------------------------------------------------------------------------
+
+  /// Conditionally shows or hides this widget.
+  ///
+  /// Wraps this widget in a [Visibility] widget. When [visible] is `false`,
+  /// the widget is hidden but still occupies layout space (like CSS
+  /// `visibility: hidden`).
+  ///
+  /// ```dart
+  /// widget.visible(visible: isLoggedIn)
+  /// ```
+  Widget visible({required bool visible}) =>
+      Visibility(visible: visible, child: this);
+
+  /// Hides this widget while preserving its layout space.
+  ///
+  /// Equivalent to `.visible(false)`.
+  ///
+  /// ```dart
+  /// widget.invisible()
+  /// ```
+  Widget invisible() => Visibility(visible: false, child: this);
+
+  // ---------------------------------------------------------------------------
+  // Aspect Ratio (EXT-13)
+  // ---------------------------------------------------------------------------
+
+  /// Constrains this widget to a specific aspect ratio.
+  ///
+  /// Wraps this widget in an [AspectRatio] widget.
+  ///
+  /// ```dart
+  /// widget.aspectRatio(16 / 9)
+  /// ```
+  Widget aspectRatio(double ratio) =>
+      AspectRatio(aspectRatio: ratio, child: this);
+
+  // ---------------------------------------------------------------------------
+  // Flex (EXT-14)
+  // ---------------------------------------------------------------------------
+
+  /// Wraps this widget in a [Flexible] for use inside [Row], [Column], or
+  /// [Flex].
+  ///
+  /// ```dart
+  /// Row(children: [
+  ///   widget.flexible(),
+  ///   widget.flexible(flex: 2),
+  /// ])
+  /// ```
+  Widget flexible({int flex = 1}) => Flexible(flex: flex, child: this);
+
+  /// Wraps this widget in an [Expanded] (fills remaining space in a flex
+  /// layout).
+  ///
+  /// Equivalent to `Flexible(fit: FlexFit.tight)`.
+  ///
+  /// ```dart
+  /// Row(children: [
+  ///   widget.expanded(),
+  /// ])
+  /// ```
+  Widget expanded({int flex = 1}) => Expanded(flex: flex, child: this);
+
+  // ---------------------------------------------------------------------------
+  // Tooltip (EXT-15)
+  // ---------------------------------------------------------------------------
+
+  /// Adds a tooltip that appears on long-press or hover.
+  ///
+  /// Wraps this widget in a [Tooltip] with the given [message].
+  ///
+  /// ```dart
+  /// Icon(Icons.info).tooltip('More information')
+  /// ```
+  Widget tooltip(String message) => Tooltip(message: message, child: this);
 }

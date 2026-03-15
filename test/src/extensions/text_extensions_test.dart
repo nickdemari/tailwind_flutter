@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tailwind_flutter/src/extensions/text_extensions.dart';
+import 'package:tailwind_flutter/src/tokens/type_scale.dart';
 import 'package:tailwind_flutter/src/tokens/typography.dart';
 
 void main() {
@@ -125,6 +126,73 @@ void main() {
         expect(text.style?.fontSize, 20);
         expect(text.style?.color, Colors.red);
         expect(text.style?.fontWeight, FontWeight.bold);
+      });
+
+      testWidgets('.underline() sets text decoration to underline',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').underline()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.decoration, TextDecoration.underline);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.lineThrough() sets text decoration to lineThrough',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').lineThrough()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.decoration, TextDecoration.lineThrough);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.overline() sets text decoration to overline',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').overline()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.decoration, TextDecoration.overline);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.fontFamily() sets font family', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('Hello').fontFamily('Roboto')),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontFamily, 'Roboto');
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.align() sets text alignment', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: SizedBox(
+              width: 200,
+              child: Text('Hello').align(TextAlign.center),
+            ),
+          ),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.textAlign, TextAlign.center);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.align() preserves existing style', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Text(
+              'Hello',
+              style: const TextStyle(color: Colors.red),
+            ).align(TextAlign.right),
+          ),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.textAlign, TextAlign.right);
+        expect(text.style?.color, Colors.red);
       });
     });
 
@@ -261,6 +329,158 @@ void main() {
         expect(text.style?.height, 1.2);
         expect(text.maxLines, 1);
         expect(text.data, 'Hello');
+      });
+    });
+
+    group('text transform extensions', () {
+      testWidgets('.uppercase() transforms text to uppercase',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('hello world').uppercase()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'HELLO WORLD');
+      });
+
+      testWidgets('.lowercase() transforms text to lowercase',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('HELLO WORLD').lowercase()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'hello world');
+      });
+
+      testWidgets('.capitalize() capitalizes first letter of each word',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('hello world').capitalize()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'Hello World');
+      });
+
+      testWidgets('.capitalize() handles single word', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('hello').capitalize()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.capitalize() handles empty string', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: Text('').capitalize()),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, '');
+      });
+
+      testWidgets('.uppercase() preserves style', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Text(
+              'hello',
+              style: const TextStyle(color: Colors.red),
+            ).uppercase(),
+          ),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.data, 'HELLO');
+        expect(text.style?.color, Colors.red);
+      });
+    });
+
+    group('type role extensions', () {
+      testWidgets('.display() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').display(TwTypeVariant.sm)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 36.0); // xl4
+        expect(text.style?.height, closeTo(1.1111, 0.001));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.headline() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').headline(TwTypeVariant.md)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 30.0); // xl3
+        expect(text.style?.height, 1.2);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.title() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').title(TwTypeVariant.lg)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 20.0); // xl
+        expect(text.style?.height, 1.4);
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.body() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').body(TwTypeVariant.sm)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 12.0); // xs
+        expect(text.style?.height, closeTo(1.3333, 0.001));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('.label() sets fontSize and lineHeight from TwTypeScale',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello').label(TwTypeVariant.sm)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 11.0); // xxs
+        expect(text.style?.height, closeTo(1.4545, 0.001));
+        expect(text.data, 'Hello');
+      });
+
+      testWidgets('role methods chain with other text extensions',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text('Hello')
+                  .headline(TwTypeVariant.lg)
+                  .bold()
+                  .textColor(Colors.red)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 36.0); // xl4
+        expect(text.style?.fontWeight, FontWeight.bold);
+        expect(text.style?.color, Colors.red);
+      });
+
+      testWidgets('role methods preserve Text constructor parameters',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+              home: Text(
+            'Hello',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ).headline(TwTypeVariant.md)),
+        );
+        final text = tester.widget<Text>(find.byType(Text));
+        expect(text.style?.fontSize, 30.0);
+        expect(text.maxLines, 2);
+        expect(text.overflow, TextOverflow.ellipsis);
       });
     });
   });

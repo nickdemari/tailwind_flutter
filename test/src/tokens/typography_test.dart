@@ -4,9 +4,10 @@ import 'package:tailwind_flutter/src/tokens/typography.dart';
 
 void main() {
   group('TwFontSizes', () {
-    test('has 13 entries', () {
+    test('has 14 entries', () {
       // Exhaustive list -- if any are missing, the import will fail.
       final entries = <TwFontSize>[
+        TwFontSizes.xxs,
         TwFontSizes.xs,
         TwFontSizes.sm,
         TwFontSizes.base,
@@ -21,7 +22,12 @@ void main() {
         TwFontSizes.xl8,
         TwFontSizes.xl9,
       ];
-      expect(entries.length, 13);
+      expect(entries.length, 14);
+    });
+
+    test('xxs has value 11.0 and lineHeight ~1.4545', () {
+      expect(TwFontSizes.xxs.value, 11.0);
+      expect(TwFontSizes.xxs.lineHeight, closeTo(1.4545, 0.001));
     });
 
     test('xs has value 12.0 and lineHeight ~1.3333', () {

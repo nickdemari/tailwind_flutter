@@ -57,6 +57,50 @@ class ExtensionsPage extends StatelessWidget {
             tailwindFlutter: _twComposedWidget(bg),
           ),
 
+          SizedBox(height: TwSpacing.s6),
+
+          // -- Example 4: Borders & Gradient --
+          _ComparisonCard(
+            title: '4. Borders & Gradient',
+            subtitle: 'border + gradient background',
+            isDark: isDark,
+            rawFlutter: _rawBorderGradient(),
+            tailwindFlutter: _twBorderGradient(),
+          ),
+
+          SizedBox(height: TwSpacing.s6),
+
+          // -- Example 5: Text Decorations & Transforms --
+          _ComparisonCard(
+            title: '5. Text Decorations',
+            subtitle: 'underline + fontFamily + capitalize',
+            isDark: isDark,
+            rawFlutter: _rawTextDecorations(),
+            tailwindFlutter: _twTextDecorations(),
+          ),
+
+          SizedBox(height: TwSpacing.s6),
+
+          // -- Example 6: Visibility & Aspect Ratio --
+          _ComparisonCard(
+            title: '6. Visibility & Aspect Ratio',
+            subtitle: 'aspectRatio + visible/invisible',
+            isDark: isDark,
+            rawFlutter: _rawVisibilityAspect(),
+            tailwindFlutter: _twVisibilityAspect(),
+          ),
+
+          SizedBox(height: TwSpacing.s6),
+
+          // -- Example 7: Flex & Tooltip --
+          _ComparisonCard(
+            title: '7. Flex & Tooltip',
+            subtitle: 'expanded + tooltip',
+            isDark: isDark,
+            rawFlutter: _rawFlexTooltip(),
+            tailwindFlutter: _twFlexTooltip(),
+          ),
+
           SizedBox(height: TwSpacing.s8),
         ],
       ).p(TwSpacing.s4),
@@ -155,6 +199,212 @@ class ExtensionsPage extends StatelessWidget {
         .rounded(TwRadii.xl)
         .shadow(TwShadows.md)
         .m(TwSpacing.s3);
+  }
+
+  // -------------------------------------------------------------------------
+  // Example 4: Borders & Gradient
+  // -------------------------------------------------------------------------
+
+  Widget _rawBorderGradient() {
+    return Padding(
+      padding: EdgeInsets.all(TwSpacing.s4),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: TwColors.purple.shade300,
+            width: 2,
+          ),
+          gradient: LinearGradient(
+            colors: [
+              TwColors.blue.shade400,
+              TwColors.purple.shade400,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(TwRadii.lg),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(TwSpacing.s4),
+          child: Text('Raw Flutter')
+              .bold()
+              .textColor(TwColors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget _twBorderGradient() {
+    return Text('tailwind_flutter')
+        .bold()
+        .textColor(TwColors.white)
+        .p(TwSpacing.s4)
+        .gradient(
+          LinearGradient(
+            colors: [
+              TwColors.blue.shade400,
+              TwColors.purple.shade400,
+            ],
+          ),
+        )
+        .border(color: TwColors.purple.shade300, width: 2)
+        .rounded(TwRadii.lg)
+        .p(TwSpacing.s4);
+  }
+
+  // -------------------------------------------------------------------------
+  // Example 5: Text Decorations & Transforms
+  // -------------------------------------------------------------------------
+
+  Widget _rawTextDecorations() {
+    return Padding(
+      padding: EdgeInsets.all(TwSpacing.s4),
+      child: Text(
+        'Hello World',
+        style: TextStyle(
+          decoration: TextDecoration.underline,
+          fontFamily: 'monospace',
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+          color: TwColors.indigo.shade600,
+        ),
+      ),
+    );
+  }
+
+  Widget _twTextDecorations() {
+    return Text('hello world')
+        .underline()
+        .fontFamily('monospace')
+        .bold()
+        .fontSize(TwFontSizes.base)
+        .textColor(TwColors.indigo.shade600)
+        .capitalize()
+        .p(TwSpacing.s4);
+  }
+
+  // -------------------------------------------------------------------------
+  // Example 6: Visibility & Aspect Ratio
+  // -------------------------------------------------------------------------
+
+  Widget _rawVisibilityAspect() {
+    return Padding(
+      padding: EdgeInsets.all(TwSpacing.s4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(TwRadii.md),
+              child: ColoredBox(
+                color: TwColors.amber.shade200,
+                child: Center(
+                  child: Text('16:9')
+                      .bold()
+                      .textColor(TwColors.amber.shade800),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: TwSpacing.s2),
+          Visibility(
+            visible: false,
+            child: Text('I am hidden')
+                .textColor(TwColors.red.shade500),
+          ),
+          Text('(hidden text above)')
+              .fontSize(TwFontSizes.xs)
+              .textColor(TwColors.slate.shade400),
+        ],
+      ),
+    );
+  }
+
+  Widget _twVisibilityAspect() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('16:9')
+            .bold()
+            .textColor(TwColors.amber.shade800)
+            .center()
+            .bg(TwColors.amber.shade200)
+            .rounded(TwRadii.md)
+            .aspectRatio(16 / 9),
+        SizedBox(height: TwSpacing.s2),
+        Text('I am hidden')
+            .textColor(TwColors.red.shade500)
+            .visible(visible: false),
+        Text('(hidden text above)')
+            .fontSize(TwFontSizes.xs)
+            .textColor(TwColors.slate.shade400),
+      ],
+    ).p(TwSpacing.s4);
+  }
+
+  // -------------------------------------------------------------------------
+  // Example 7: Flex & Tooltip
+  // -------------------------------------------------------------------------
+
+  Widget _rawFlexTooltip() {
+    return Padding(
+      padding: EdgeInsets.all(TwSpacing.s4),
+      child: Row(
+        children: [
+          Expanded(
+            child: Tooltip(
+              message: 'This fills available space',
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(TwRadii.md),
+                child: ColoredBox(
+                  color: TwColors.teal.shade100,
+                  child: Padding(
+                    padding: EdgeInsets.all(TwSpacing.s3),
+                    child: Text('Expanded')
+                        .bold()
+                        .textColor(TwColors.teal.shade700),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: TwSpacing.s2),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(TwRadii.md),
+            child: ColoredBox(
+              color: TwColors.orange.shade100,
+              child: Padding(
+                padding: EdgeInsets.all(TwSpacing.s3),
+                child: Text('Fixed')
+                    .bold()
+                    .textColor(TwColors.orange.shade700),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _twFlexTooltip() {
+    return Row(
+      children: [
+        Text('Expanded')
+            .bold()
+            .textColor(TwColors.teal.shade700)
+            .p(TwSpacing.s3)
+            .bg(TwColors.teal.shade100)
+            .rounded(TwRadii.md)
+            .tooltip('This fills available space')
+            .expanded(),
+        SizedBox(width: TwSpacing.s2),
+        Text('Fixed')
+            .bold()
+            .textColor(TwColors.orange.shade700)
+            .p(TwSpacing.s3)
+            .bg(TwColors.orange.shade100)
+            .rounded(TwRadii.md),
+      ],
+    ).p(TwSpacing.s4);
   }
 }
 

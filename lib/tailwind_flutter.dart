@@ -19,4 +19,5 @@ export 'src/tokens/opacity.dart';
 export 'src/tokens/radius.dart';
 export 'src/tokens/shadows.dart';
 export 'src/tokens/spacing.dart';
+export 'src/tokens/type_scale.dart';
 export 'src/tokens/typography.dart';

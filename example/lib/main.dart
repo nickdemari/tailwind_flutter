@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tailwind_flutter/tailwind_flutter.dart';
 
 import 'package:tailwind_flutter_example/pages/extensions_page.dart';
+import 'package:tailwind_flutter_example/pages/layouts_page.dart';
 import 'package:tailwind_flutter_example/pages/styles_page.dart';
 import 'package:tailwind_flutter_example/pages/tokens_page.dart';
 
@@ -48,7 +49,7 @@ class _HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: Text('tailwind_flutter')
@@ -66,6 +67,7 @@ class _HomeScreen extends StatelessWidget {
               Tab(text: 'Tokens'),
               Tab(text: 'Extensions'),
               Tab(text: 'Styles'),
+              Tab(text: 'Layouts'),
             ],
           ),
         ),
@@ -74,6 +76,7 @@ class _HomeScreen extends StatelessWidget {
             TokensPage(),
             ExtensionsPage(),
             StylesPage(),
+            LayoutsPage(),
           ],
         ),
       ),

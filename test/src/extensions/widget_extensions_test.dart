@@ -288,6 +288,239 @@ void main() {
       });
     });
 
+    group('border extensions', () {
+      testWidgets('.border() wraps in DecoratedBox with uniform border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox().border(color: Colors.red, width: 2),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(decoration.border, Border.all(color: Colors.red, width: 2));
+      });
+
+      testWidgets('.border() defaults to width 1 and black', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().border()),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(decoration.border, Border.all());
+      });
+
+      testWidgets('.borderTop() wraps in DecoratedBox with top border only',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home:
+                const SizedBox().borderTop(color: Colors.blue, width: 3),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(top: BorderSide(color: Colors.blue, width: 3)),
+        );
+      });
+
+      testWidgets('.borderBottom() wraps in DecoratedBox with bottom border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox()
+                .borderBottom(color: Colors.green, width: 2),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(
+            bottom: BorderSide(color: Colors.green, width: 2),
+          ),
+        );
+      });
+
+      testWidgets('.borderLeft() wraps in DecoratedBox with left border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox()
+                .borderLeft(color: Colors.orange),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(
+            left: BorderSide(color: Colors.orange),
+          ),
+        );
+      });
+
+      testWidgets('.borderRight() wraps in DecoratedBox with right border',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox()
+                .borderRight(color: Colors.purple, width: 4),
+          ),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(
+          decoration.border,
+          const Border(
+            right: BorderSide(color: Colors.purple, width: 4),
+          ),
+        );
+      });
+    });
+
+    group('gradient extension', () {
+      testWidgets('.gradient() wraps in DecoratedBox with gradient',
+          (tester) async {
+        const gradient = LinearGradient(
+          colors: [Colors.blue, Colors.red],
+        );
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().gradient(gradient)),
+        );
+
+        final decoratedBox =
+            tester.widget<DecoratedBox>(find.byType(DecoratedBox));
+        final decoration = decoratedBox.decoration as BoxDecoration;
+        expect(decoration.gradient, gradient);
+      });
+    });
+
+    group('visibility extensions', () {
+      testWidgets('.visible(true) wraps in Visibility with visible=true',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().visible(visible: true)),
+        );
+
+        final visibility =
+            tester.widget<Visibility>(find.byType(Visibility));
+        expect(visibility.visible, true);
+      });
+
+      testWidgets('.visible(false) wraps in Visibility with visible=false',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().visible(visible: false)),
+        );
+
+        final visibility =
+            tester.widget<Visibility>(find.byType(Visibility));
+        expect(visibility.visible, false);
+      });
+
+      testWidgets('.invisible() wraps in Visibility with visible=false',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().invisible()),
+        );
+
+        final visibility =
+            tester.widget<Visibility>(find.byType(Visibility));
+        expect(visibility.visible, false);
+      });
+    });
+
+    group('aspect ratio extension', () {
+      testWidgets('.aspectRatio() wraps in AspectRatio', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(home: const SizedBox().aspectRatio(16 / 9)),
+        );
+
+        final aspectRatio =
+            tester.widget<AspectRatio>(find.byType(AspectRatio));
+        expect(aspectRatio.aspectRatio, 16 / 9);
+      });
+    });
+
+    group('flex extensions', () {
+      testWidgets('.flexible() wraps in Flexible with default flex',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().flexible()]),
+          ),
+        );
+
+        final flexible = tester.widget<Flexible>(find.byType(Flexible));
+        expect(flexible.flex, 1);
+        expect(flexible.fit, FlexFit.loose);
+      });
+
+      testWidgets('.flexible(flex: 2) sets custom flex value',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().flexible(flex: 2)]),
+          ),
+        );
+
+        final flexible = tester.widget<Flexible>(find.byType(Flexible));
+        expect(flexible.flex, 2);
+      });
+
+      testWidgets('.expanded() wraps in Expanded', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().expanded()]),
+          ),
+        );
+
+        final expanded = tester.widget<Expanded>(find.byType(Expanded));
+        expect(expanded.flex, 1);
+      });
+
+      testWidgets('.expanded(flex: 3) sets custom flex value',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().expanded(flex: 3)]),
+          ),
+        );
+
+        final expanded = tester.widget<Expanded>(find.byType(Expanded));
+        expect(expanded.flex, 3);
+      });
+    });
+
+    group('tooltip extension', () {
+      testWidgets('.tooltip() wraps in Tooltip with message',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox().tooltip('Hello'),
+          ),
+        );
+
+        final tooltip = tester.widget<Tooltip>(find.byType(Tooltip));
+        expect(tooltip.message, 'Hello');
+      });
+    });
+
     group('chaining', () {
       testWidgets(
           'chained calls produce correct nesting (last call outermost)',
