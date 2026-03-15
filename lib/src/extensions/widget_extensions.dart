@@ -24,6 +24,7 @@
 /// the parent. Use `.rounded().shadow()` to paint the shadow outside.
 library;
 
+import 'package:flutter/material.dart' show Tooltip;
 import 'package:flutter/widgets.dart';
 
 /// Tailwind-style chaining extensions on [Widget].
@@ -499,4 +500,44 @@ extension TwWidgetExtensions on Widget {
   /// ```
   Widget aspectRatio(double ratio) =>
       AspectRatio(aspectRatio: ratio, child: this);
+
+  // ---------------------------------------------------------------------------
+  // Flex (EXT-14)
+  // ---------------------------------------------------------------------------
+
+  /// Wraps this widget in a [Flexible] for use inside [Row], [Column], or
+  /// [Flex].
+  ///
+  /// ```dart
+  /// Row(children: [
+  ///   widget.flexible(),
+  ///   widget.flexible(flex: 2),
+  /// ])
+  /// ```
+  Widget flexible({int flex = 1}) => Flexible(flex: flex, child: this);
+
+  /// Wraps this widget in an [Expanded] (fills remaining space in a flex
+  /// layout).
+  ///
+  /// Equivalent to `Flexible(fit: FlexFit.tight)`.
+  ///
+  /// ```dart
+  /// Row(children: [
+  ///   widget.expanded(),
+  /// ])
+  /// ```
+  Widget expanded({int flex = 1}) => Expanded(flex: flex, child: this);
+
+  // ---------------------------------------------------------------------------
+  // Tooltip (EXT-15)
+  // ---------------------------------------------------------------------------
+
+  /// Adds a tooltip that appears on long-press or hover.
+  ///
+  /// Wraps this widget in a [Tooltip] with the given [message].
+  ///
+  /// ```dart
+  /// Icon(Icons.info).tooltip('More information')
+  /// ```
+  Widget tooltip(String message) => Tooltip(message: message, child: this);
 }

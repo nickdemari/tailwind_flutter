@@ -414,9 +414,7 @@ void main() {
       testWidgets('.visible(true) wraps in Visibility with visible=true',
           (tester) async {
         await tester.pumpWidget(
-          MaterialApp(
-            home: const SizedBox().visible(visible: true),
-          ),
+          MaterialApp(home: const SizedBox().visible(visible: true)),
         );
 
         final visibility =
@@ -427,9 +425,7 @@ void main() {
       testWidgets('.visible(false) wraps in Visibility with visible=false',
           (tester) async {
         await tester.pumpWidget(
-          MaterialApp(
-            home: const SizedBox().visible(visible: false),
-          ),
+          MaterialApp(home: const SizedBox().visible(visible: false)),
         );
 
         final visibility =
@@ -458,6 +454,70 @@ void main() {
         final aspectRatio =
             tester.widget<AspectRatio>(find.byType(AspectRatio));
         expect(aspectRatio.aspectRatio, 16 / 9);
+      });
+    });
+
+    group('flex extensions', () {
+      testWidgets('.flexible() wraps in Flexible with default flex',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().flexible()]),
+          ),
+        );
+
+        final flexible = tester.widget<Flexible>(find.byType(Flexible));
+        expect(flexible.flex, 1);
+        expect(flexible.fit, FlexFit.loose);
+      });
+
+      testWidgets('.flexible(flex: 2) sets custom flex value',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().flexible(flex: 2)]),
+          ),
+        );
+
+        final flexible = tester.widget<Flexible>(find.byType(Flexible));
+        expect(flexible.flex, 2);
+      });
+
+      testWidgets('.expanded() wraps in Expanded', (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().expanded()]),
+          ),
+        );
+
+        final expanded = tester.widget<Expanded>(find.byType(Expanded));
+        expect(expanded.flex, 1);
+      });
+
+      testWidgets('.expanded(flex: 3) sets custom flex value',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Row(children: [const SizedBox().expanded(flex: 3)]),
+          ),
+        );
+
+        final expanded = tester.widget<Expanded>(find.byType(Expanded));
+        expect(expanded.flex, 3);
+      });
+    });
+
+    group('tooltip extension', () {
+      testWidgets('.tooltip() wraps in Tooltip with message',
+          (tester) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: const SizedBox().tooltip('Hello'),
+          ),
+        );
+
+        final tooltip = tester.widget<Tooltip>(find.byType(Tooltip));
+        expect(tooltip.message, 'Hello');
       });
     });
 
